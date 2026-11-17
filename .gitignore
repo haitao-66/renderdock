@@ -5,4 +5,5 @@ api/data/
 api/test/output/
 api/test/*.log
 api/test/server.pid
+.secrets/
 *.log
