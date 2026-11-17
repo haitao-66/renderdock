@@ -70,7 +70,7 @@ node test/run-test.mjs <key>                # smoke test
 - [x] Waitlist form fallback (mailto on static hosting)
 - [ ] MCP directory listings (PulseMCP, Glama)
 - [ ] Waitlist backend (Pages Function + KV) — pending KV token permission
-- [ ] Email forwarding for hello@renderdock.dev
+- [x] Email forwarding for hello@renderdock.dev
 
 ## Week 4 (in progress)
 
