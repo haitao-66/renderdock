@@ -73,7 +73,7 @@ const server = http.createServer(async (req, res) => {
 
   let rel = decodeURIComponent(url.pathname);
   if (rel === "/") rel = "/index.html";
-  const filePath = path.normalize(path.join(ROOT, rel));
+  let filePath = path.normalize(path.join(ROOT, rel));
   if (!filePath.startsWith(ROOT + path.sep) && filePath !== path.join(ROOT, "index.html")) {
     res.writeHead(403);
     res.end("Forbidden");
@@ -81,10 +81,13 @@ const server = http.createServer(async (req, res) => {
   }
 
   fs.stat(filePath, (err, st) => {
-    if (err || !st.isFile()) {
+    if (err || !(st.isFile() || st.isDirectory())) {
       res.writeHead(404);
       res.end("Not found");
       return;
+    }
+    if (st.isDirectory()) {
+      filePath = path.join(filePath, "index.html");
     }
     res.writeHead(200, { "content-type": MIME[path.extname(filePath)] || "application/octet-stream" });
     if (req.method === "HEAD") {

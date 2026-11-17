@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — RenderDock</title>
+<meta name="description" content="RenderDock pricing: a generous free tier and simple paid tiers. No credit card required to start.">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/pricing/">Pricing</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <h1>Pricing</h1>
+    <p class="hero-sub">Start free. Upgrade when your agents get busy.</p>
+  </section>
+
+  <section class="pricing" style="border-top:none;">
+    <div class="pricing-rows">
+      <div class="pricing-row">
+        <p class="pricing-term">Free</p>
+        <p class="pricing-value">$0 forever — 200 renders a month, all formats, no credit card.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">Starter</p>
+        <p class="pricing-value">$19 a month — 5,000 renders, priority support.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">Pro</p>
+        <p class="pricing-value">$79 a month — 25,000 renders, priority support, private file mode.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">Overage</p>
+        <p class="pricing-value">$10 per 5,000 extra renders on paid plans.</p>
+      </div>
+    </div>
+    <p class="pricing-note">One render = one PDF or PNG file. Quotas reset monthly. Cancel anytime.</p>
+  </section>
+
+  <section class="pricing-faq">
+    <h2>Questions</h2>
+    <div class="pricing-rows">
+      <div class="pricing-row">
+        <p class="pricing-term">What counts as a render?</p>
+        <p class="pricing-value">One successful PDF or PNG output. Failed requests are not counted.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">What happens at my quota?</p>
+        <p class="pricing-value">Requests return a clear 402 response until your quota resets. Nothing is silently truncated.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">Is the beta really free?</p>
+        <p class="pricing-value">Yes. Paid tiers activate when the beta ends — you will be notified before that happens.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist">
+    <h2>Get early access</h2>
+    <p class="waitlist-note">The beta opens in a few weeks. One email, no spam — just the invite.</p>
+    <form id="waitlist-form" class="waitlist-form" novalidate>
+      <label class="visually-hidden" for="email">Email address</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+      <button class="button" type="submit">Get early access</button>
+    </form>
+    <p id="waitlist-error" class="waitlist-error" role="alert" hidden>The signup didn't reach the server. Try again in a moment.</p>
+    <p id="waitlist-done" class="waitlist-done" hidden>You're on the list. We'll email when the beta opens.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+<script src="../app.js"></script>
+</body>
+</html>

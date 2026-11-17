@@ -418,6 +418,90 @@ h2 {
 
 .site-footer p { margin: 0; }
 
+.footer-links {
+  display: flex;
+  gap: 1.4rem;
+}
+
+.footer-links a {
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-links a:hover { color: var(--ink); }
+
+/* ---------- subpages (pricing / legal) ---------- */
+
+.page-hero {
+  padding: 3.5rem 0 0.5rem !important;
+}
+
+.page-hero h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.8rem;
+}
+
+.pricing-note {
+  color: var(--ink-soft);
+  margin: 1.6rem 0 0;
+  max-width: 40rem;
+}
+
+.pricing-faq { border-top: 1px solid var(--line); }
+
+.legal {
+  max-width: 46rem;
+  padding-bottom: 4rem;
+}
+
+.legal h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem;
+}
+
+.legal h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 2.4rem 0 0.7rem;
+}
+
+.legal p, .legal li {
+  color: var(--ink-soft);
+  max-width: 42rem;
+}
+
+.legal p { margin: 0 0 0.9rem; }
+
+.legal ul { padding-left: 1.4rem; margin: 0 0 0.9rem; }
+
+.legal li { margin: 0.3rem 0; }
+
+.legal strong { color: var(--ink); }
+
+.legal a {
+  color: var(--cobalt);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.last-updated {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
 /* ---------- a11y ---------- */
 
 .visually-hidden {
