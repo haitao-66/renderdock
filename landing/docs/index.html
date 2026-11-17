@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>API Docs — RenderDock</title>
+<meta name="description" content="RenderDock API reference: render Markdown, HTML, URLs, and Handlebars templates to PDF or PNG over REST, MCP, or n8n.">
+<link rel="canonical" href="https://renderdock.dev/docs/">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>API Docs</h1>
+    <p class="last-updated">Beta · updated November 17, 2026</p>
+
+    <h2>Authentication</h2>
+    <p>Send your API key as a bearer token on every request. Keys start with <code>rd_</code>.</p>
+    <pre><code>Authorization: Bearer rd_your_api_key</code></pre>
+
+    <h2>Render</h2>
+    <p><code>POST /v1/render</code> — turns one input into a PDF or PNG file. Exactly one of <code>markdown</code>, <code>html</code>, <code>url</code>, or <code>template</code> is required.</p>
+
+    <pre><code>curl -X POST https://api.renderdock.dev/v1/render \
+  -H "Authorization: Bearer rd_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"markdown": "# Weekly report\n\nShipped the queue.", "format": "pdf"}' \
+  -o weekly-report.pdf</code></pre>
+
+    <h3>Request fields</h3>
+    <div class="pricing-rows">
+      <div class="pricing-row"><p class="pricing-term"><code>markdown</code></p><p class="pricing-value">string — Markdown source, rendered with the Report print theme</p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>html</code></p><p class="pricing-value">string — raw HTML</p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>url</code></p><p class="pricing-value">string — public http(s) URL; private addresses are blocked</p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>template</code></p><p class="pricing-value">string — Handlebars template, merged with <code>data</code></p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>data</code></p><p class="pricing-value">object — data merged into <code>template</code></p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>format</code></p><p class="pricing-value"><code>pdf</code> (default) or <code>png</code></p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>paper</code></p><p class="pricing-value">PDF page size: A4 (default), Letter, Legal, A3</p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>width</code> / <code>height</code></p><p class="pricing-value">PNG viewport in px (default 1280×900)</p></div>
+      <div class="pricing-row"><p class="pricing-term"><code>filename</code></p><p class="pricing-value">base name for <code>Content-Disposition</code> (without extension)</p></div>
+    </div>
+
+    <h3>Template example</h3>
+    <pre><code>curl -X POST https://api.renderdock.dev/v1/render \
+  -H "Authorization: Bearer rd_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "template": "&lt;h1&gt;Invoice for {{company}}&lt;/h1&gt;&lt;p&gt;{{amount}}&lt;/p&gt;",
+    "data": { "company": "Acme GmbH", "amount": "€120.00" },
+    "format": "pdf",
+    "filename": "invoice-acme"
+  }' \
+  -o invoice.pdf</code></pre>
+
+    <h3>Responses</h3>
+    <p>Success returns the file with the matching content type (<code>application/pdf</code> or <code>image/png</code>) and an <code>X-RenderDock-Quota</code> header like <code>12/200</code> showing used/total monthly renders.</p>
+
+    <h3>Errors</h3>
+    <div class="pricing-rows">
+      <div class="pricing-row"><p class="pricing-term">400</p><p class="pricing-value">invalid input, blocked URL, or unsupported format</p></div>
+      <div class="pricing-row"><p class="pricing-term">401</p><p class="pricing-value">missing or invalid API key</p></div>
+      <div class="pricing-row"><p class="pricing-term">402</p><p class="pricing-value">monthly quota exceeded</p></div>
+      <div class="pricing-row"><p class="pricing-term">429</p><p class="pricing-value">rate limit (30 renders per minute per key)</p></div>
+      <div class="pricing-row"><p class="pricing-term">500</p><p class="pricing-value">render failed on our side</p></div>
+    </div>
+
+    <h2>Limits</h2>
+    <ul>
+      <li>Free tier: 200 renders per month, resetting on the first of the month</li>
+      <li>Request body: 5 MB · render timeout: 15 s (URLs)</li>
+      <li>Rate limit: 30 renders per minute per key</li>
+    </ul>
+
+    <h2>MCP server</h2>
+    <p>Give your agent a <code>render</code> tool:</p>
+    <pre><code>npx @renderdock/mcp</code></pre>
+    <p>Configuration: <code>RENDERDOCK_API_KEY</code> (required) and <code>RENDERDOCK_API_URL</code> (optional). The tool returns the local path of the written file, or base64 with <code>response_mode: base64</code>.</p>
+
+    <h2>n8n node</h2>
+    <p>Install the community node in n8n (Settings → Community Nodes), then add a RenderDock node to any workflow:</p>
+    <pre><code>npm install n8n-nodes-renderdock</code></pre>
+
+    <h2>Security</h2>
+    <p>URL rendering resolves DNS first and refuses private, loopback, and link-local addresses. Credentials in URLs are rejected. Rendered content is processed transiently and not stored.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "n8n-nodes-renderdock",
+  "version": "0.1.0",
+  "description": "RenderDock node for n8n — turn Markdown, HTML, URLs, or templates into PDF and PNG files",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "pdf",
+    "screenshot",
+    "render",
+    "markdown"
+  ],
+  "license": "MIT",
+  "main": "nodes/RenderDock/RenderDock.node.js",
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "nodes": [
+      "nodes/RenderDock/RenderDock.node.js"
+    ],
+    "credentials": [
+      "credentials/RenderDockApi.credentials.js"
+    ]
+  }
+}

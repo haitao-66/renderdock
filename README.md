@@ -16,6 +16,7 @@
 | `static-server.js` | Zero-dependency Node static server (waitlist writes to `landing/waitlist.json`) |
 | `api/` | Rendering API — Fastify + Playwright, keys + metering (SQLite) |
 | `mcp/` | MCP server (`@renderdock/mcp`) — gives agents a `render` tool |
+| `n8n-node/` | n8n community node (`n8n-nodes-renderdock`) |
 | `tools/node/` | Local Node 24 toolchain (gitignored) |
 | `.claude/launch.json` | Preview configuration for the Claude desktop app |
 
@@ -70,3 +71,12 @@ node test/run-test.mjs <key>                # smoke test
 - [ ] MCP directory listings (PulseMCP, Glama)
 - [ ] Waitlist backend (Pages Function + KV) — pending KV token permission
 - [ ] Email forwarding for hello@renderdock.dev
+
+## Week 4 (in progress)
+
+- [x] n8n community node (`n8n-node/`, plain JS, syntax-checked)
+- [x] API docs page live at `/docs/`
+- [x] Waitlist Pages Function (`landing/functions/waitlist.js`) — needs KV binding
+- [ ] n8n community node listing
+- [ ] Beta recruitment posts (Reddit, X)
+- [ ] GitHub + npm accounts for public distribution
