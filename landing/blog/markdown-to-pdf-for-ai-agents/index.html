@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Markdown to PDF for AI agents: the missing piece between draft and document — RenderDock</title>
+<meta name="description" content="AI agents write drafts in Markdown, but stakeholders get PDFs. Here is how an agent-native rendering API closes the gap, with working examples.">
+<link rel="canonical" href="https://renderdock.dev/blog/markdown-to-pdf-for-ai-agents/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/pricing/">Pricing</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>Markdown to PDF for AI agents: the missing piece between draft and document</h1>
+    <p class="last-updated">November 17, 2026</p>
+
+    <p>Your agent just wrote a beautiful weekly report in Markdown. Your client expects a PDF. Somewhere in between, the formatting dies — tables stretch, page breaks land mid-sentence, and someone pastes the whole thing into Word and spends twenty minutes fixing it.</p>
+
+    <p>AI models are excellent at drafting text and terrible at delivering documents. This gap — between draft and deliverable — is what an agent-native rendering API is for.</p>
+
+    <h2>What an agent-native renderer does</h2>
+
+    <p>It is a single endpoint that takes structured input and returns a finished file. No browser, no print dialog, no manual step:</p>
+
+    <pre><code>curl -X POST https://api.renderdock.dev/v1/render \
+  -H "Authorization: Bearer $RENDERDOCK_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{"markdown": "# Weekly report\n\nShipped the queue.", "format": "pdf"}' \
+  -o weekly-report.pdf</code></pre>
+
+    <p>The same endpoint renders HTML, public URLs, and Handlebars templates with data — the template path is what turns it into an invoice machine, a certificate factory, or a report generator for an entire pipeline.</p>
+
+    <h2>Three ways your automation calls it</h2>
+
+    <ul>
+      <li><strong>REST API</strong> — from any language, in any cron job or pipeline.</li>
+      <li><strong>MCP server</strong> — agents like Claude get a <code>render</code> tool and receive file paths back, not context-bloating blobs.</li>
+      <li><strong>n8n node</strong> — drop rendering into a workflow next to your existing integrations.</li>
+    </ul>
+
+    <h2>Why not just print from a browser?</h2>
+
+    <p>Because automation needs consistency: the same margins, fonts, page numbers, and table rules every run. A rendering API gives you a fixed print stylesheet — serif body, hairline tables, page counters — so the hundredth report looks like the first. And when the agent is the one producing the file, there is no human in the loop to notice that the print dialog defaults changed.</p>
+
+    <h2>Try it during the beta</h2>
+
+    <p>RenderDock is in beta. The free tier includes 200 renders a month with no credit card — enough for a team's reporting pipeline while you kick the tires. <a href="/pricing/">See pricing</a>, or <a href="/#waitlist">join the waitlist</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>

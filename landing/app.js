@@ -46,6 +46,8 @@
       })
       .catch(function () {
         error.hidden = false;
+        error.innerHTML =
+          'The signup didn\'t reach the server. Email <a href="mailto:hello@renderdock.dev">hello@renderdock.dev</a> and we\'ll add you by hand.';
       });
   });
 })();

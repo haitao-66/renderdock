@@ -15,6 +15,7 @@
 | `landing/` | Static landing page + waitlist (served by `static-server.js` for local preview) |
 | `static-server.js` | Zero-dependency Node static server (waitlist writes to `landing/waitlist.json`) |
 | `api/` | Rendering API — Fastify + Playwright, keys + metering (SQLite) |
+| `mcp/` | MCP server (`@renderdock/mcp`) — gives agents a `render` tool |
 | `tools/node/` | Local Node 24 toolchain (gitignored) |
 | `.claude/launch.json` | Preview configuration for the Claude desktop app |
 
@@ -34,6 +35,12 @@ curl -X POST http://127.0.0.1:8787/v1/render \
   -H "Authorization: Bearer <key>" \
   -H "Content-Type: application/json" \
   -d '{"markdown": "# Hello", "format": "pdf"}' -o out.pdf
+
+# MCP server (needs the API running + a key)
+cd mcp
+npm install
+RENDERDOCK_API_KEY=<key> node src/index.js   # stdio transport
+node test/run-test.mjs <key>                # smoke test
 ```
 
 ## Week 1 tasks
@@ -53,3 +60,13 @@ curl -X POST http://127.0.0.1:8787/v1/render \
 - [x] SSRF guard for URL rendering
 - [x] End-to-end render test (`api/test/e2e.mjs`, 10/10)
 - [x] Commit
+
+## Week 3 tasks
+
+- [x] Website live on renderdock.dev (Cloudflare Pages) with pricing + legal pages
+- [x] MCP server (`mcp/`, smoke-tested end to end)
+- [x] First blog post (`/blog/markdown-to-pdf-for-ai-agents/`)
+- [x] Waitlist form fallback (mailto on static hosting)
+- [ ] MCP directory listings (PulseMCP, Glama)
+- [ ] Waitlist backend (Pages Function + KV) — pending KV token permission
+- [ ] Email forwarding for hello@renderdock.dev

@@ -1,0 +1,22 @@
+{
+  "name": "@renderdock/mcp",
+  "version": "0.1.0",
+  "description": "RenderDock MCP server — give your AI agent a render tool (Markdown/HTML/URL to PDF/PNG)",
+  "type": "module",
+  "bin": {
+    "renderdock-mcp": "src/index.js"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "test": "node test/run-test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  }
+}
