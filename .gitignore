@@ -8,3 +8,4 @@ api/test/server.pid
 mcp/test/output/
 .secrets/
 *.log
+.n.wrangler/
