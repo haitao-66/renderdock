@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HTML to PDF API: build it yourself or pay for a renderer? — RenderDock</title>
+<meta name="description" content="Self-hosting Puppeteer for PDF generation looks free until you price the server, the maintenance, and the 3am pages. A breakdown of the real costs of build vs buy.">
+<link rel="canonical" href="https://renderdock.dev/blog/html-to-pdf-api-build-or-buy/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>HTML to PDF API: build it yourself or pay for a renderer?</h1>
+    <p class="last-updated">November 18, 2026</p>
+
+    <p>Every team that needs PDFs eventually runs the same calculation. Puppeteer is free, so self-hosting must be cheaper, right? The honest answer: it depends on how much your time costs and how much you enjoy paging yourself at 3am.</p>
+
+    <h2>The visible cost of self-hosting</h2>
+
+    <p>A VPS that runs headless Chromium comfortably is a few dollars a month. That is the whole bill on day one. You write a small service, point Puppeteer at it, and it works — for the first week.</p>
+
+    <p>Then the real costs arrive:</p>
+
+    <ul>
+      <li><strong>Concurrency</strong>. Chromium is memory-hungry. Ten simultaneous renders on a small box and the kernel starts killing processes. You now own a queue, a pool, and a retry policy.</li>
+      <li><strong>Security</strong>. If you render user-supplied URLs, you are hosting an SSRF gadget. Someone will point your server at your own internal network. You need DNS checks, private-IP filtering, and sandboxing — and you need to keep them current.</li>
+      <li><strong>Typography</strong>. The default print output of Chromium is ugly: tables with no rules, headings that collide with page breaks, no page numbers. You will spend days on a print stylesheet before the first customer calls the output "polished".</li>
+      <li><strong>Maintenance</strong>. Chromium updates, Node updates, fonts, memory leaks, the one customer whose document has 400 pages and blocks your queue. None of it is hard. All of it is your problem forever.</li>
+    </ul>
+
+    <h2>What the hosted option costs</h2>
+
+    <p>A rendering API charges per render — typically a few dollars per month for thousands of documents, with a free tier that covers prototyping. You trade a variable bill for the entire list above. The fixed costs of self-hosting are easy to see; the ongoing ones are easy to underprice.</p>
+
+    <h2>When to build</h2>
+
+    <ul>
+      <li>You render at very high volume and the arithmetic clearly favors a dedicated server.</li>
+      <li>Your inputs are fully trusted and static — no user URLs, no external resources.</li>
+      <li>You enjoy infrastructure work and want the learning experience.</li>
+    </ul>
+
+    <h2>When to buy</h2>
+
+    <ul>
+      <li>Rendering is a feature of your product, not the product itself.</li>
+      <li>Your volume is in the hundreds to tens of thousands per month.</li>
+      <li>You render user-supplied content and do not want to become an SSRF expert.</li>
+      <li>You want the output to look designed — page numbers, hairline tables, real typography — without owning a print stylesheet.</li>
+    </ul>
+
+    <p>RenderDock is in beta with a free tier of 200 renders a month — enough to replace a self-hosted prototype and see whether the math works for you. <a href="/docs/">Read the API docs</a>, or <a href="/#waitlist">join the waitlist</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>

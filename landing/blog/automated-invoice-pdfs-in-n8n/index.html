@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automated invoice PDFs in n8n: from data to a polished document — RenderDock</title>
+<meta name="description" content="A step-by-step n8n workflow that turns invoice data into a designed PDF and emails it to the client — no code, no browser, no manual steps.">
+<link rel="canonical" href="https://renderdock.dev/blog/automated-invoice-pdfs-in-n8n/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>Automated invoice PDFs in n8n: from data to a polished document</h1>
+    <p class="last-updated">November 18, 2026</p>
+
+    <p>Invoicing is one of those tasks that never gets automated because it feels too bespoke — every invoice has the client's name, line items, a due date, and your logo, so it ends up being assembled by hand in a spreadsheet or a Word template. In n8n, the whole pipeline is three nodes: your data source, a RenderDock node, and an email node.</p>
+
+    <h2>The workflow</h2>
+
+    <p>Start with the data. Whether it lives in a Google Sheet, an Airtable base, or a webhook from your booking system, the node that reads it produces a JSON item per invoice. The only other thing you need is a Handlebars template that lays out one invoice:</p>
+
+    <pre><code>&lt;h1&gt;Invoice {{invoiceNumber}}&lt;/h1&gt;
+&lt;p&gt;{{companyName}}&lt;br&gt;
+{{companyAddress}}&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Item&lt;/th&gt;&lt;th&gt;Qty&lt;/th&gt;&lt;th&gt;Amount&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+  {{#each lineItems}}
+    &lt;tr&gt;&lt;td&gt;{{description}}&lt;/td&gt;&lt;td&gt;{{quantity}}&lt;/td&gt;&lt;td&gt;{{amount}}&lt;/td&gt;&lt;/tr&gt;
+  {{/each}}
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Total: {{total}}&lt;/strong&gt;&lt;br&gt;
+Due by {{dueDate}}&lt;/p&gt;</code></pre>
+
+    <p>The RenderDock node takes this template plus the JSON item, and outputs a designed PDF: A4 page, hairline table rules, page numbers, your typography. The email node attaches it and sends. Run the workflow on a schedule and your month-end invoicing is a thing that happens while you sleep.</p>
+
+    <h2>Why a rendering node beats the alternatives</h2>
+
+    <ul>
+      <li><strong>No spreadsheet exports</strong>. The invoice is a first-class PDF from the moment the data exists, not a CSV somebody reformats.</li>
+      <li><strong>Consistent design</strong>. One template means every invoice looks like your company, not like the default print output of whatever tool made it.</li>
+      <li><strong>It composes</strong>. The same workflow pattern renders certificates, contracts, statements, and reports — swap the template, keep the pipeline.</li>
+    </ul>
+
+    <h2>Set it up</h2>
+
+    <p>Install the RenderDock community node in n8n (Settings → Community Nodes → <code>n8n-nodes-renderdock</code>), add your API key in the credentials, and drop the node into a workflow. The free tier covers 200 renders a month — enough to run this pipeline for a small business at no cost. <a href="/docs/">API docs</a> have the full reference.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>
