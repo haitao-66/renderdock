@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "renderdock-landing",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["static-server.js"],
+      "port": 4321
+    }
+  ]
+}

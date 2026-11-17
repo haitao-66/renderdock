@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RenderDock — Drafts in, documents out</title>
+<meta name="description" content="RenderDock turns Markdown, HTML, and JSON into production-quality PDFs and screenshots through one API, built for AI agents and automations.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="#top">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#demo">Demo</a>
+    <a href="#pricing">Pricing</a>
+    <a class="button button-small" href="#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <h1>Drafts in.<br>Documents out.</h1>
+    <p class="hero-sub">RenderDock turns Markdown, HTML, and JSON into production-quality PDFs and screenshots through one API — built for AI agents and automations.</p>
+    <p class="hero-actions">
+      <a class="button" href="#waitlist">Get early access</a>
+      <a class="text-link" href="#demo">See how it works</a>
+    </p>
+  </section>
+
+  <section class="demo" id="demo" aria-label="Render demo">
+    <div class="demo-head">
+      <span class="specimen">Specimen 001 — weekly report, from Markdown</span>
+      <div class="toggle" role="group" aria-label="Show input or output">
+        <button class="toggle-button" type="button" data-view="markdown" aria-pressed="false">Markdown in</button>
+        <button class="toggle-button" type="button" data-view="pdf" aria-pressed="true">PDF out</button>
+      </div>
+    </div>
+    <div class="demo-body">
+      <pre class="demo-markdown" id="view-markdown"><code># Weekly engineering report
+
+Shipped the rendering queue this week. Numbers below,
+context after the table.
+
+| Metric      | Last week | This week |
+| ----------- | --------- | --------- |
+| Renders     | 4,210     | 6,870     |
+| Median p50  | 1.4s      | 0.9s      |
+| Failures    | 12        | 3         |
+
+&gt; The agent drafts the words. We handle the paper.
+
+Next week: template packs for invoices and certificates.</code></pre>
+      <div class="demo-pdf is-active" id="view-pdf">
+        <div class="sheet" aria-label="Rendered PDF preview">
+          <div class="sheet-body">
+            <h2 class="sheet-title">Weekly engineering report</h2>
+            <p class="sheet-meta">Week 46 · RenderDock · for internal distribution</p>
+            <p>Shipped the rendering queue this week. Numbers below, context after the table.</p>
+            <table class="sheet-table">
+              <thead>
+                <tr><th scope="col">Metric</th><th scope="col">Last week</th><th scope="col">This week</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Renders</td><td>4,210</td><td>6,870</td></tr>
+                <tr><td>Median p50</td><td>1.4s</td><td>0.9s</td></tr>
+                <tr><td>Failures</td><td>12</td><td>3</td></tr>
+              </tbody>
+            </table>
+            <blockquote class="sheet-quote">
+              <p>The agent drafts the words. We handle the paper.</p>
+            </blockquote>
+            <p>Next week: template packs for invoices and certificates.</p>
+          </div>
+          <p class="sheet-footer">RenderDock specimen · page 1 of 1</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ways">
+    <h2>Three ways in</h2>
+    <div class="ways-list">
+      <div class="way-row">
+        <h3 class="way-name">REST API</h3>
+        <div class="way-detail">
+          <p>Send one request, get a file back. Works from any language.</p>
+          <pre><code>curl -X POST https://api.renderdock.dev/v1/render \
+  -H "Authorization: Bearer $RENDERDOCK_KEY" \
+  -d '{"markdown": "...", "format": "pdf"}'</code></pre>
+        </div>
+      </div>
+      <div class="way-row">
+        <h3 class="way-name">MCP server</h3>
+        <div class="way-detail">
+          <p>Give your agent a render tool. Files come back as paths, not context.</p>
+          <pre><code>npx @renderdock/mcp</code></pre>
+        </div>
+      </div>
+      <div class="way-row">
+        <h3 class="way-name">n8n node</h3>
+        <div class="way-detail">
+          <p>Drop rendering into any workflow — invoices, reports, screenshots on a schedule.</p>
+          <pre><code>npm install n8n-nodes-renderdock</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <h2>Pricing</h2>
+    <div class="pricing-rows">
+      <div class="pricing-row">
+        <p class="pricing-term">Free tier</p>
+        <p class="pricing-value">200 renders a month, free forever. No credit card.</p>
+      </div>
+      <div class="pricing-row">
+        <p class="pricing-term">Paid tiers</p>
+        <p class="pricing-value">Open with the beta — Starter from $19 a month.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <h2>Get early access</h2>
+    <p class="waitlist-note">The beta opens in a few weeks. One email, no spam — just the invite.</p>
+    <form id="waitlist-form" class="waitlist-form" novalidate>
+      <label class="visually-hidden" for="email">Email address</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+      <button class="button" type="submit">Get early access</button>
+    </form>
+    <p id="waitlist-error" class="waitlist-error" role="alert" hidden>The signup didn't reach the server. Try again in a moment.</p>
+    <p id="waitlist-done" class="waitlist-done" hidden>You're on the list. We'll email when the beta opens.</p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
