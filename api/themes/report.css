@@ -1,0 +1,153 @@
+/* RenderDock report theme — default print stylesheet for Markdown to PDF.
+   The typography here is the product: serif body on A4 with hairline rules. */
+
+@page {
+  size: A4;
+  margin: 22mm 18mm 20mm 18mm;
+  @bottom-center {
+    content: counter(page) " / " counter(pages);
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #8a857a;
+  }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Screen output (PNG) gets a readable measure; print output is constrained
+   by the @page margins instead. */
+@media screen {
+  body { background: #fff; }
+  .markdown-body {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 3.5rem 2.5rem;
+  }
+}
+
+.markdown-body {
+  font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", "Microsoft YaHei", serif;
+  font-size: 10.5pt;
+  line-height: 1.65;
+  color: #1c1a16;
+}
+
+.markdown-body h1 {
+  font-size: 21pt;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  margin: 0 0 0.5em;
+  page-break-after: avoid;
+}
+
+.markdown-body h2 {
+  font-size: 14.5pt;
+  font-weight: 600;
+  margin: 1.6em 0 0.5em;
+  padding-bottom: 0.28em;
+  border-bottom: 1px solid #d9d4c7;
+  page-break-after: avoid;
+}
+
+.markdown-body h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  margin: 1.4em 0 0.4em;
+  page-break-after: avoid;
+}
+
+.markdown-body p {
+  margin: 0 0 0.8em;
+  orphans: 3;
+  widows: 3;
+}
+
+.markdown-body a {
+  color: #2e46a5;
+  text-decoration: none;
+  border-bottom: 1px solid #b9c2e6;
+}
+
+.markdown-body strong { font-weight: 700; }
+
+.markdown-body em { font-style: italic; }
+
+.markdown-body blockquote {
+  margin: 1em 0;
+  padding: 0.1em 0 0.1em 1.1em;
+  border-left: 3px solid #2e46a5;
+  color: #5c574c;
+  font-style: italic;
+}
+
+.markdown-body blockquote p { margin: 0.4em 0; }
+
+.markdown-body ul, .markdown-body ol {
+  margin: 0.5em 0 0.9em;
+  padding-left: 1.5em;
+}
+
+.markdown-body li { margin: 0.22em 0; }
+
+.markdown-body code {
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+  font-size: 9pt;
+  background: #f3f1ea;
+  border: 1px solid #e6e2d6;
+  padding: 0.05em 0.32em;
+}
+
+.markdown-body pre {
+  background: #f3f1ea;
+  border: 1px solid #e3dfd3;
+  padding: 0.9em 1.1em;
+  margin: 1em 0;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+
+.markdown-body pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 8.5pt;
+  line-height: 1.55;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 9.5pt;
+  page-break-inside: avoid;
+}
+
+.markdown-body th {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 600;
+  text-align: left;
+  color: #5c574c;
+  border-bottom: 2px solid #1c1a16;
+  padding: 0.4em 0.7em 0.4em 0;
+}
+
+.markdown-body td {
+  border-bottom: 1px solid #d9d4c7;
+  padding: 0.45em 0.7em 0.45em 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #d9d4c7;
+  margin: 1.8em 0;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  page-break-inside: avoid;
+}

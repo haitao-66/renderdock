@@ -1,3 +1,8 @@
 node_modules/
 landing/waitlist.json
+tools/
+api/data/
+api/test/output/
+api/test/*.log
+api/test/server.pid
 *.log

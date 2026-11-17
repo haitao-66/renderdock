@@ -23,7 +23,7 @@
 | 渲染引擎 | Playwright（Chromium headless） | print-to-PDF 质量高；截图/PDF 统一 |
 | Markdown 排版 | markdown-it + 自有 CSS 排版主题 | **核心差异点**：排版质量即产品力 |
 | 模板 | Handlebars | JSON 数据 + 模板 → HTML（发票/报告场景） |
-| 数据库 | SQLite（better-sqlite3） | 单机起步零外部依赖；用户/API key/用量/任务表 |
+| 数据库 | SQLite（Node 24 内置 `node:sqlite`） | 单机起步零外部依赖；本机无 C++ 工具链，用内置模块免原生编译 |
 | 认证 | GitHub OAuth（控制台登录）+ API key（机器访问） | 开发者受众，免费，无密码体系 |
 | 计费 | Paddle（MoR） | 代缴全球税；webhook 同步订阅状态；大陆个人待验证（备选 Creem） |
 | 对象存储 | Cloudflare R2 | 渲染结果托管 URL，免费 10GB |
@@ -63,7 +63,7 @@ Client/Agent → API（Fastify）→ 鉴权（API key）+ 限额检查
 | 周 | 内容 | 状态 |
 | --- | --- | --- |
 | 1 | 命名/域名、项目骨架、架构文档、落地页 | 进行中 |
-| 2 | Node 工具链、渲染核心、API + key + 计量 | 未开始 |
+| 2 | Node 工具链、渲染核心、API + key + 计量 | 进行中 |
 | 3 | 免费档、定价页、MCP server、首批 SEO 内容 | 未开始 |
 | 4 | n8n 节点、目录上架、Beta 招募 | 未开始 |
 | 5+ | 分发、迭代、垂直模板包 | 未开始 |
@@ -72,7 +72,7 @@ Client/Agent → API（Fastify）→ 鉴权（API key）+ 限额检查
 
 ## 6. 环境说明
 
-- **本机 Node 来自 Unity 安装**（`D:\Unity\Tuanjie Cowork\cli\bin\win32-x64\node.exe`），不带 npm。第 2 周需下载 Node 24 LTS zip 解压到 `tools/node/` 本地使用（不动系统，无需管理员）。
+- **本机 Node 工具链**：已装 Node 24.22.3 到 `tools/node/`（2026-11-17，项目本地，gitignored）。系统里的 node.exe 来自 Unity 安装且不带 npm，不要使用。
 - **域名 renderdock.dev**：待用户注册（Cloudflare Registrar 或 Namecheap，~$12/年，支持国际信用卡/PayPal）。
 - **收款账号（Paddle + 派安盈）**：用户第 2~3 周注册验证，免费。若 Paddle 拒大陆个人，改 Creem。
 - **命名撞车**：RenderDock Studio（乌克兰 3D 美术外包，不同行业）——接受现状，规模化前重评。

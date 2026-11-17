@@ -1,0 +1,21 @@
+{
+  "name": "renderdock-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RenderDock rendering API — Markdown/HTML/JSON to PDF/PNG",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "create-key": "node scripts/create-key.js"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "fastify": "^5.12.8",
+    "handlebars": "^4.7.10",
+    "markdown-it": "^15.0.3",
+    "playwright": "^1.65.1"
+  }
+}
