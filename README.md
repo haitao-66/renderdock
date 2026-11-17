@@ -52,4 +52,4 @@ curl -X POST http://127.0.0.1:8787/v1/render \
 - [x] API key auth, rate limit, monthly quota (node:sqlite)
 - [x] SSRF guard for URL rendering
 - [x] End-to-end render test (`api/test/e2e.mjs`, 10/10)
-- [ ] Commit
+- [x] Commit
