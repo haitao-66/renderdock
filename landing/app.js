@@ -47,7 +47,13 @@
       .catch(function () {
         error.hidden = false;
         error.innerHTML =
-          'The signup didn\'t reach the server. Email <a href="mailto:hello@renderdock.dev">hello@renderdock.dev</a> and we\'ll add you by hand.';
+          "Opening your mail app — send the pre-filled message and you're on the list.";
+        var mailto =
+          "mailto:hello@renderdock.dev?subject=" +
+          encodeURIComponent("RenderDock beta access") +
+          "&body=" +
+          encodeURIComponent("Please add me to the beta waitlist.\n\nEmail: " + email);
+        window.location.href = mailto;
       });
   });
 })();
