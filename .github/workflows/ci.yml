@@ -35,7 +35,7 @@ jobs:
           cache-dependency-path: 'n8n-node/pnpm-lock.yaml'
 
       - name: Install dependencies
-        run: 'pnpm install'
+        run: 'pnpm install --ignore-scripts'
 
       - name: Run lint
         run: 'pnpm run lint'

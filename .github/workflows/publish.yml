@@ -93,7 +93,7 @@ jobs:
           cache-dependency-path: 'n8n-node/pnpm-lock.yaml'
 
       - name: Install dependencies
-        run: 'pnpm install'
+        run: 'pnpm install --ignore-scripts'
 
       - name: Release
         # Publishes to npm with a provenance attestation (requires id-token: write above).
