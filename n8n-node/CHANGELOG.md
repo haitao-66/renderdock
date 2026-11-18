@@ -1,3 +1,6 @@
+# 0.1.3
+
+Commit built dist artifacts to the repository (n8n vetting requires declared files present in the repo).
 # 0.1.2
 
 Restructure node into the resource/operation pattern required by n8n verification.
