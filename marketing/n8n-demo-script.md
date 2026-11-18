@@ -6,7 +6,7 @@
 
 - [ ] n8n 已在本机启动（http://localhost:5678）
 - [ ] 生产 API key 在手（.secrets/production-key.txt）
-- [ ] Groq API key（AI 工具演示用）
+- [ ] OpenRouter API key（AI 工具演示用）
 - [ ] 演示素材：下方"演示数据"
 
 ## 录制流程
@@ -42,7 +42,7 @@
 2. Execute，展示生成的发票 PDF
 
 ### 第 5 步：作为 AI Agent 的工具使用
-1. 新建 **AI Agent** 节点（在 LangChain 分类下），Provider 选 Groq，配好 Groq 凭据
+1. 新建 **AI Agent** 节点，Model 选 **OpenRouter**，Model Name 选一个免费模型（如 `meta-llama/llama-3.3-70b-instruct:free`），配好 OpenRouter 凭据（API Key 粘贴 OpenRouter 的 key）
 2. 在 Agent 节点里选择工具：勾选 **RenderDock** 节点作为工具
 3. 给 Agent 一个提示词："Write a short weekly report in Markdown about our product launch, then use the RenderDock tool to render it as a PDF and tell me the filename."
 4. 执行 → Agent 调用了 RenderDock 工具 → 展示生成的 PDF 文件
