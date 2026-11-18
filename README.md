@@ -4,8 +4,9 @@
 
 - REST API · MCP server · n8n node
 - Free tier: 200 renders/month forever
-- Domain: renderdock.dev
-- Status: **Week 1** — naming, landing page, architecture (this repo was born 2026-11-17)
+- Site: https://renderdock.dev · Repo: https://github.com/haitao-66/renderdock
+- npm: [@renderdock/mcp](https://www.npmjs.com/package/@renderdock/mcp) · [n8n-nodes-renderdock](https://www.npmjs.com/package/n8n-nodes-renderdock)
+- Status: **Beta development** — week 4 (repo born 2026-11-17)
 
 ## Repository layout
 

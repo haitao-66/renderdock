@@ -73,6 +73,7 @@ Client/Agent → API（Fastify）→ 鉴权（API key）+ 限额检查
 ## 6. 环境说明
 
 - **本机 Node 工具链**：已装 Node 24.22.3 到 `tools/node/`（2026-11-17，项目本地，gitignored）。系统里的 node.exe 来自 Unity 安装且不带 npm，不要使用。
+- **GitHub 推送（重要运维经验，2026-11-18）**：HTTPS 推送从代理出口 IP 被 GitHub 403（"Permission denied to <owner>"，换节点/换 token 格式/绕 GCM 均无效，token 在 API 层权限完好）。**唯一可行路径：SSH over 443**。配置见 `~/.ssh/config`：`Host github.com → HostName ssh.github.com, Port 443, User git`，配合 `ssh-keygen -t ed25519` 密钥加到 GitHub 账号。注意：写 `~/.ssh/config` 必须**无 BOM**（PowerShell 5.1 的 `Set-Content -Encoding utf8` 带 BOM 会导致 OpenSSH 解析失败，用 `[IO.File]::WriteAllText` + `UTF8Encoding($false)`）。git 仓库不配 http.proxy（走 Clash TUN 直连）。
 - **域名 renderdock.dev**：待用户注册（Cloudflare Registrar 或 Namecheap，~$12/年，支持国际信用卡/PayPal）。
 - **收款账号（Paddle + 派安盈）**：用户第 2~3 周注册验证，免费。若 Paddle 拒大陆个人，改 Creem。
 - **命名撞车**：RenderDock Studio（乌克兰 3D 美术外包，不同行业）——接受现状，规模化前重评。
