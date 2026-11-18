@@ -1,0 +1,32 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.haitao-66/renderdock",
+  "title": "RenderDock",
+  "description": "Render Markdown, HTML, URLs, or templates to polished PDF and PNG files",
+  "repository": {
+    "url": "https://github.com/haitao-66/renderdock",
+    "source": "github",
+    "id": "1462276471",
+    "subfolder": "mcp"
+  },
+  "version": "0.1.1",
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@renderdock/mcp",
+      "version": "0.1.1",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "description": "Your RenderDock API key (starts with rd_)",
+          "isRequired": true,
+          "format": "string",
+          "isSecret": true,
+          "name": "RENDERDOCK_API_KEY"
+        }
+      ]
+    }
+  ]
+}

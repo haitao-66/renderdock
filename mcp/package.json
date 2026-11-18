@@ -1,6 +1,7 @@
 {
   "name": "@renderdock/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "io.github.haitao-66/renderdock",
   "description": "RenderDock MCP server — give your AI agent a render tool (Markdown/HTML/URL to PDF/PNG)",
   "type": "module",
   "bin": {
