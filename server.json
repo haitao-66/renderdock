@@ -1,0 +1,5 @@
+{
+  "name": "renderdock",
+  "description": "Render Markdown, HTML, URLs, or templates to polished PDF and PNG files",
+  "version": "0.1.0"
+}
