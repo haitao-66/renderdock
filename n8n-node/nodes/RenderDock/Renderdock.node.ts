@@ -30,17 +30,28 @@ export class RenderDock implements INodeType {
 		],
 		properties: [
 			{
-				displayName: 'Input Type',
-				name: 'inputType',
+				displayName: 'Resource',
+				name: 'resource',
 				type: 'options',
+				noDataExpression: true,
 				options: [
-					{ name: 'Markdown', value: 'markdown' },
-					{ name: 'HTML', value: 'html' },
-					{ name: 'URL', value: 'url' },
-					{ name: 'Template + Data', value: 'template' },
+					{ name: 'Markdown', value: 'markdown', action: 'Render Markdown' },
+					{ name: 'HTML', value: 'html', action: 'Render HTML' },
+					{ name: 'URL', value: 'url', action: 'Render URL' },
+					{ name: 'Template', value: 'template', action: 'Render Template' },
 				],
 				default: 'markdown',
 				description: 'What to render',
+			},
+			{
+				displayName: 'Operation',
+				name: 'operation',
+				type: 'options',
+				noDataExpression: true,
+				options: [
+					{ name: 'Render', value: 'render', action: 'Render' },
+				],
+				default: 'render',
 			},
 			{
 				displayName: 'Markdown',
@@ -48,7 +59,7 @@ export class RenderDock implements INodeType {
 				type: 'string',
 				typeOptions: { rows: 8 },
 				default: '',
-				displayOptions: { show: { inputType: ['markdown'] } },
+				displayOptions: { show: { resource: ['markdown'] } },
 				description: 'Markdown source text',
 			},
 			{
@@ -57,7 +68,7 @@ export class RenderDock implements INodeType {
 				type: 'string',
 				typeOptions: { rows: 8 },
 				default: '',
-				displayOptions: { show: { inputType: ['html'] } },
+				displayOptions: { show: { resource: ['html'] } },
 				description: 'Raw HTML',
 			},
 			{
@@ -65,7 +76,7 @@ export class RenderDock implements INodeType {
 				name: 'url',
 				type: 'string',
 				default: '',
-				displayOptions: { show: { inputType: ['url'] } },
+				displayOptions: { show: { resource: ['url'] } },
 				description: 'Public http(s) URL to render; private addresses are blocked',
 			},
 			{
@@ -74,7 +85,7 @@ export class RenderDock implements INodeType {
 				type: 'string',
 				typeOptions: { rows: 8 },
 				default: '',
-				displayOptions: { show: { inputType: ['template'] } },
+				displayOptions: { show: { resource: ['template'] } },
 				description: 'Handlebars template',
 			},
 			{
@@ -82,7 +93,7 @@ export class RenderDock implements INodeType {
 				name: 'additionalFields',
 				type: 'collection',
 				default: {},
-				displayOptions: { show: { inputType: ['template'] } },
+				displayOptions: { show: { resource: ['template'] } },
 				options: [
 					{
 						displayName: 'Data (JSON)',
@@ -135,7 +146,7 @@ export class RenderDock implements INodeType {
 
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 			try {
-				const inputType = this.getNodeParameter('inputType', itemIndex) as string;
+				const resource = this.getNodeParameter('resource', itemIndex) as string;
 				const format = this.getNodeParameter('format', itemIndex) as string;
 				const filename = this.getNodeParameter('filename', itemIndex) as string;
 
@@ -144,16 +155,16 @@ export class RenderDock implements INodeType {
 					(credentials.apiUrl as string) || 'https://api.renderdock.dev/v1/render';
 
 				const body: Record<string, unknown> = { format };
-				if (inputType === 'markdown') {
+				if (resource === 'markdown') {
 					body.markdown = this.getNodeParameter('markdown', itemIndex);
 				}
-				if (inputType === 'html') {
+				if (resource === 'html') {
 					body.html = this.getNodeParameter('html', itemIndex);
 				}
-				if (inputType === 'url') {
+				if (resource === 'url') {
 					body.url = this.getNodeParameter('url', itemIndex);
 				}
-				if (inputType === 'template') {
+				if (resource === 'template') {
 					body.template = this.getNodeParameter('template', itemIndex);
 					const additionalFields = this.getNodeParameter('additionalFields', itemIndex) as {
 						data?: object;
