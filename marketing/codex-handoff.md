@@ -4,11 +4,11 @@
 
 ## 环境事实（不要重新安装任何东西）
 
-- n8n 已在本机运行：http://localhost:5678（全新实例，未创建账号）
-- 待演示的 npm 包：`n8n-nodes-renderdock`（**必须安装 0.1.4 版**，即 npm 最新版）
+- n8n 已在本机运行：http://localhost:5678（owner 账号已存在：haitao0209@outlook.com / REDACTED see .secrets/n8n-demo-credentials.txt）
+- 待演示的 npm 包：`n8n-nodes-renderdock`（**必须安装 0.1.5 版**，即 npm 最新版；此版本无需任何修补，请勿修改已安装的副本）
 - 生产渲染 API：https://api.renderdock.dev/v1/render
 - 生产 API key：REDACTED see .secrets/production-key.txt
-- AI 模型服务（用于第 6 步）：OpenRouter，key：REDACTED see .secrets/openrouter-key.txt，模型名：`meta-llama/llama-3.3-70b-instruct:free`
+- AI 模型服务（用于第 7 步）：OpenRouter，key：REDACTED see .secrets/openrouter-key.txt；首选 `meta-llama/llama-3.3-70b-instruct:free`，若区域不可用换 `meta-llama/llama-3.1-8b-instruct:free`，仍不可用再换任一 `:free` 模型
 
 ## 录制要求
 
@@ -19,8 +19,8 @@
 
 ## 操作步骤（严格按序）
 
-1. **创建账号**：打开 http://localhost:5678，在 "Set up owner account" 表单填邮箱 haitao0209@outlook.com、密码 REDACTED see .secrets/n8n-demo-credentials.txt，提交。若直接进了编辑器，跳过。
-2. **安装节点**：n8n 左下角 Settings → Community Nodes → 安装 `n8n-nodes-renderdock`（会装 npm 最新版 0.1.4）。
+1. **登录**：打开 http://localhost:5678，用上方账号登录（若已登录跳过）。
+2. **安装节点**：n8n 左下角 Settings → Community Nodes → 若已安装旧版，先卸载，再安装 `n8n-nodes-renderdock`（安装 npm 最新版 0.1.5，**不要修改已安装文件**）。
 3. **新建工作流**：New workflow → 节点面板搜索 RenderDock → 拖入画布。
 4. **创建凭据并测试**：节点上 Create New Credential → 类型 RenderDock API → API URL 填 https://api.renderdock.dev/v1/render，API Key 填上面生产 key → 点 Test，展示 "Connection tested successfully"。
 5. **演示动作一（Markdown → PDF）**：Resource 选 Markdown，粘贴下面"演示 Markdown"，Format 选 PDF，Execute。展示输出项中的 binary PDF 文件。
