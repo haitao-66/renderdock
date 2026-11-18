@@ -44,9 +44,12 @@ curl http://localhost:8787/healthz
 ## 5. DNS + HTTPS
 
 在 Cloudflare DNS 添加记录：
-- 类型 A，名称 `api`，指向 VPS 公网 IP，**开启代理（橙云）**——TLS 由 Cloudflare 提供，无需证书
+- 类型 A，名称 `api`，指向 VPS 公网 IP，**开启代理（橙云）**
 
-然后测试：`curl https://api.renderdock.dev/healthz`
+**端口与 TLS 架构（重要）**：
+- 服务在宿主机监听 **80 端口**（docker 映射 80→8787），因阿里云轻量默认防火墙仅放行 22/3389，需在控制台**防火墙**添加 TCP 80 规则
+- Cloudflare 免费版源站端口不支持 8787；源站用 80 + Cloudflare **SSL/TLS 模式改为 Flexible（灵活）**（访问者到 CF 是 HTTPS，CF 到源站是 HTTP，源站无需维护证书）
+- 之后测试：`curl https://api.renderdock.dev/healthz`
 
 ## 6. 运维要点
 

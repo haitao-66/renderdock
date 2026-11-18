@@ -2,7 +2,7 @@ services:
   api:
     build: .
     ports:
-      - "8787:8787"
+      - "80:8787"
     volumes:
       - renderdock-data:/app/data
     environment:

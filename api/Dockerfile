@@ -7,6 +7,7 @@ RUN npm install && npx playwright install --with-deps chromium
 
 COPY src ./src
 COPY themes ./themes
+COPY scripts ./scripts
 
 ENV NODE_ENV=production
 ENV PLAYWRIGHT_BROWSERS_PATH=/root/.cache/ms-playwright
