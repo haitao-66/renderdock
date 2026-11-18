@@ -37,7 +37,7 @@ github.com/haitao-66/renderdock → 页面右侧齿轮图标（About 区域）�
 ## 状态跟踪
 
 - [ ] GitHub 主题标签
-- [ ] Glama 上架
-- [ ] PulseMCP 上架
-- [ ] n8n 验证提交
-- [ ] 官方 MCP Registry
+- [x] Glama 上架（https://glama.ai/mcp/servers/haitao-66/renderdock，2026-11-18 已验证）
+- [ ] PulseMCP 上架（暂停收件，恢复后自动从官方 Registry 同步）
+- [x] n8n 验证提交（2026-11-18，审核中）
+- [x] 官方 MCP Registry（io.github.haitao-66/renderdock v0.1.1，2026-11-18 已发布）
