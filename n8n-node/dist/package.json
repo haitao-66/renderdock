@@ -1,0 +1,55 @@
+{
+    "name": "n8n-nodes-renderdock",
+    "version": "0.1.2",
+    "description": "RenderDock node for n8n — turn Markdown, HTML, public URLs, and Handlebars templates into polished PDF and PNG files",
+    "license": "MIT",
+    "homepage": "https://renderdock.dev",
+    "keywords": [
+        "n8n-community-node-package",
+        "n8n",
+        "pdf",
+        "screenshot",
+        "render",
+        "markdown"
+    ],
+    "author": {
+        "name": "RenderDock",
+        "email": "hello@renderdock.dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/haitao-66/renderdock.git"
+    },
+    "scripts": {
+        "build": "n8n-node build",
+        "build:watch": "tsc --watch",
+        "dev": "n8n-node dev",
+        "lint": "n8n-node lint",
+        "lint:fix": "n8n-node lint --fix",
+        "release": "n8n-node release",
+        "prepublishOnly": "n8n-node prerelease"
+    },
+    "files": [
+        "dist"
+    ],
+    "n8n": {
+        "n8nNodesApiVersion": 1,
+        "strict": true,
+        "credentials": [
+            "dist/credentials/RenderDockApi.credentials.js"
+        ],
+        "nodes": [
+            "dist/nodes/RenderDock/Renderdock.node.js"
+        ]
+    },
+    "devDependencies": {
+        "@n8n/node-cli": "*",
+        "eslint": "9.32.0",
+        "prettier": "3.6.2",
+        "release-it": "^21.1.0",
+        "typescript": "5.9.2"
+    },
+    "peerDependencies": {
+        "n8n-workflow": "*"
+    }
+}
