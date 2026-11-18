@@ -1,5 +1,0 @@
-onlyBuiltDependencies:
-  - cpu-features
-  - eslint-plugin-n8n-nodes-base
-  - isolated-vm
-  - ssh2
