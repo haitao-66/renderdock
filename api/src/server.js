@@ -73,7 +73,7 @@ app.post("/v1/render", async (req, reply) => {
 });
 
 const port = Number(process.env.PORT) || 8787;
-app.listen({ port, host: "127.0.0.1" }, (err) => {
+app.listen({ port, host: "0.0.0.0" }, (err) => {
   if (err) {
     console.error(err);
     process.exit(1);
