@@ -10,7 +10,7 @@
 | 2 | aliyun.com（阿里云国内站） | 你的支付宝实名 | 云服务器（轻量应用服务器，新加坡 47.236.31.106），跑生产渲染 API | ✅ 运行中（约 ¥56/月） |
 | 3 | npmjs.com（npm） | 用户名 renderdock | 包发布平台：@renderdock/mcp、n8n-nodes-renderdock | ✅ 正常 |
 | 4 | github.com（GitHub） | 用户名 haitao-66 | 代码仓库（renderdock、n8n-nodes-renderdock）、CI/发布管道、目录上架的身份验证 | ✅ 正常 |
-| 5 | paddle.com（Paddle） | 你本人（个人主体） | 收款平台（MoR），代缴全球税，未来客户付款入口 | ⏳ 地址复核等邮件 |
+| 5 | paddle.com（Paddle） | 你本人（个人主体） | 收款平台（MoR），代缴全球税，未来客户付款入口 | ✅ 已激活（2026-11-20），待填提现信息 |
 | 6 | payoneer.com.cn（派安盈） | 你本人 | 提现通道：Paddle 的钱 → 国内银行卡 | ✅ 注册完成 |
 | 7 | creators.n8n.io（n8n 创作者门户） | GitHub 登录 | n8n 社区节点验证提交与审核进度 | ⏳ 人工审核中（~4 周） |
 | 8 | openrouter.ai（OpenRouter） | GitHub 登录 | AI 模型 API 中转（n8n 演示用的免费模型） | ✅ 正常（免费额度） |
@@ -38,4 +38,5 @@
 ## 关键邮件与转发
 
 - hello@renderdock.dev → 转发到 haitao0209@outlook.com（客户/审核联系入口）
-- 等待中的邮件：Paddle 地址复核、n8n 审核结果
+- 等待中的邮件：n8n 审核结果（Paddle 地址复核已于 2026-11-20 通过）
+- 待办：Paddle 提现信息（连接派安盈）
