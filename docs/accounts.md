@@ -16,6 +16,7 @@
 | 8 | openrouter.ai（OpenRouter） | GitHub 登录 | AI 模型 API 中转（n8n 演示用的免费模型） | ✅ 正常（免费额度） |
 | 9 | glama.ai（Glama） | GitHub 登录 | MCP 服务器目录，RenderDock 已上架 | ✅ 已上架 |
 | 10 | registry.modelcontextprotocol.io（官方 MCP Registry） | GitHub OAuth | 官方 MCP 目录，io.github.haitao-66/renderdock 已发布 | ✅ 已发布 |
+| 11 | mcprush.com（MCP 市场，自动收录） | 未认领（可选） | 第三方 MCP 市场自动上架了 @renderdock/mcp；认领可选，变现功能不使用 | 📋 已自动上架 |
 
 ## 尝试过但未使用/失败的
 
