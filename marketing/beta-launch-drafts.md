@@ -78,6 +78,45 @@ Ask me anything — especially roast the pricing.
 
 ---
 
+## 5. Hacker News (Show HN)
+
+> 2026-11-21 实测：Reddit / Indie Hackers 被当前出口 IP 拦截（403），HN 可访问。可先发这篇。
+
+**Title:** Show HN: RenderDock — one API that turns Markdown into polished PDFs
+
+**Post:** 链接帖，URL 填 https://renderdock.dev，标题如上。
+
+**首条评论（发帖后立即自己发）：**
+
+```
+Hi HN — I built RenderDock, an API that turns Markdown, HTML, URLs, or
+Handlebars templates + JSON into designed PDFs and PNGs.
+
+Why: agents and automation workflows are great at producing
+documents-in-spirit and terrible at producing documents. The missing step
+is a renderer with opinions about typography — hairline tables, page
+numbers, A4 geometry.
+
+- One endpoint: POST /v1/render
+- MCP server, so Claude and other agents get a render tool that returns
+  file paths instead of eating context
+- n8n community node for workflow automation
+- Free tier: 200 renders/month, no card. Beta is open.
+
+Stack: Fastify + Playwright on one small VPS, SQLite for keys and
+metering, Cloudflare Pages for the site. Solo, bootstrapped, about three
+weeks of work.
+
+I'm looking for 10-20 beta users who automate documents. Try the demo at
+renderdock.dev, or grab one of the template packs (invoice / certificate /
+report) at renderdock.dev/templates.
+
+Feedback I'd love: which input format matters to you (Markdown vs
+template + JSON), and whether the pricing feels right. Roast away.
+```
+
+---
+
 ## 发布清单（按顺序）
 
 1. Beta 正式开放（VPS 部署 API + 计费接入）
@@ -85,3 +124,4 @@ Ask me anything — especially roast the pricing.
 3. 上架 n8n 社区节点列表（需要 npm 发布）
 4. 按顺序发上述帖子（同一周内错开发，不要一天全发）
 5. 在 waitlist 邮件列表发开通通知
+6. （可选）HN Show HN —— 2026-11-21 实测当前出口 IP 被 Reddit/Indie Hackers 拦截，HN 可用，可插队先发
