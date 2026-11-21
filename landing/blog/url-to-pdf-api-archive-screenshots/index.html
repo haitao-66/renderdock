@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL to PDF API: turning web pages into permanent files — RenderDock</title>
+<meta name="description" content="Web pages change, receipts disappear, dashboards get paywalled. A URL to PDF API turns any public page into a permanent A4 file — with the security caveats handled for you.">
+<link rel="canonical" href="https://renderdock.dev/blog/url-to-pdf-api-archive-screenshots/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/templates/">Templates</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>URL to PDF API: turning web pages into permanent files</h1>
+    <p class="last-updated">November 21, 2026</p>
+
+    <p>Some web pages matter long after their URL stops working. A receipt from a payment portal, a contract page from a vendor, a dashboard you need to attach to a report — all of them live online until the moment they don't. A URL to PDF API turns any public page into a file you own.</p>
+
+    <h2>What you're actually paying for</h2>
+
+    <p>Pointing headless Chromium at a URL is easy. Pointing it at <em>untrusted</em> URLs is where self-hosting gets expensive:</p>
+
+    <ul>
+      <li><strong>SSRF</strong>. A URL renderer is a machine that fetches whatever you tell it to fetch. If you render user-supplied links, someone will try your internal network. A proper renderer resolves DNS first, refuses private and loopback addresses, and verifies that the connection target matches the DNS answer — because DNS rebinding is a thing.</li>
+      <li><strong>Waiting for the right moment</strong>. Most pages render twice: a skeleton, then the real content. Capturing too early gives you a half-empty page. A good renderer waits for the network to settle before the shutter clicks.</li>
+      <li><strong>Print styles</strong>. Screens scroll; paper paginates. Without a print stylesheet the PDF comes out as one long, awkward column with no page numbers.</li>
+    </ul>
+
+    <h2>PDF or PNG?</h2>
+
+    <p>For archiving and distribution, PDF wins: fixed A4 pages, printable, page numbers in the footer. For a visual in a report or a thumbnail in an app, PNG is the better call — it renders at a set viewport and captures the full page height.</p>
+
+    <pre><code>curl -X POST https://api.renderdock.dev/v1/render \
+  -H "Authorization: Bearer rd_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com/receipt", "format": "pdf"}' \
+  -o receipt.pdf</code></pre>
+
+    <h2>Where this fits</h2>
+
+    <p>Most teams build this once: an order confirmation page that becomes a PDF for the customer, a weekly digest of competitor pages, an archive of a vendor portal. Each one is one request. RenderDock's beta includes 200 renders a month free — enough to archive everything you actually care about. <a href="/docs/">See the API docs</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/templates/">Templates</a>
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>

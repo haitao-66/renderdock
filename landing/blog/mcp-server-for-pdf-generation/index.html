@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Give your AI agent a render tool: MCP servers for document output — RenderDock</title>
+<meta name="description" content="Agents can draft documents but can't deliver files. An MCP server gives Claude and other agents a render tool that turns Markdown into designed PDFs — and returns file paths, not context.">
+<link rel="canonical" href="https://renderdock.dev/blog/mcp-server-for-pdf-generation/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/templates/">Templates</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>Give your AI agent a render tool: MCP servers for document output</h1>
+    <p class="last-updated">November 21, 2026</p>
+
+    <p>Agents are great at drafting and terrible at delivering. Ask one for a report and you get perfect Markdown — then you open Word and do the formatting yourself. The missing piece is a tool that turns the draft into a file the moment it's written.</p>
+
+    <h2>MCP in one paragraph</h2>
+
+    <p>The Model Context Protocol connects an agent to tools the same way USB connects a mouse to a laptop. An MCP server exposes capabilities — search the web, query a database, render a document — and the agent calls them as needed. No custom integration per model: one server works with Claude and any other MCP-speaking client.</p>
+
+    <h2>What a render tool should return</h2>
+
+    <p>Agents are charged by context. Asking one to "produce a PDF" and expecting the binary in the chat is asking for a huge bill. A render tool works differently:</p>
+
+    <ul>
+      <li>The agent writes Markdown or a template with data.</li>
+      <li>The tool renders it to a file on disk.</li>
+      <li>The agent gets back a <em>path</em> — a few tokens — not the file.</li>
+    </ul>
+
+    <p>The agent can then hand that path to the user, attach it to an email via another tool, or keep going. The expensive content never re-enters the context window.</p>
+
+    <h2>Try it</h2>
+
+    <p>RenderDock ships as an MCP server. Install it and your agent gains a <code>render</code> tool:</p>
+
+    <pre><code>npx @renderdock/mcp
+# RENDERDOCK_API_KEY=rd_your_api_key   (required)
+# RENDERDOCK_API_URL=...               (optional)</code></pre>
+
+    <p>Then the conversation looks like this: "Write a weekly report about our beta launch, render it as a PDF, and tell me the filename." The agent drafts, calls <code>render</code>, and reports back with a path — no pasting, no Word, no formatting.</p>
+
+    <p>Markdown, HTML, URLs, and Handlebars templates are all supported, so the same tool covers reports, invoices, certificates, and page archives. The beta is open with 200 free renders a month. <a href="/docs/">Read the docs</a>, or <a href="/#waitlist">get a key</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/templates/">Templates</a>
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>

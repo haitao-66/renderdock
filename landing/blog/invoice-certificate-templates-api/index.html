@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Invoice and certificate templates are live: Handlebars + JSON → designed PDFs — RenderDock</title>
+<meta name="description" content="Copy a template, fill in your JSON, render. Three new RenderDock template packs — invoice, certificate, report — with PDF samples, a render CLI, and a gallery page.">
+<link rel="canonical" href="https://renderdock.dev/blog/invoice-certificate-templates-api/">
+<link rel="stylesheet" href="../../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/templates/">Templates</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="legal">
+    <h1>Invoice and certificate templates are live: Handlebars + JSON → designed PDFs</h1>
+    <p class="last-updated">November 21, 2026</p>
+
+    <p>Template packs just shipped on <a href="/templates/">renderdock.dev/templates</a>: invoice, certificate, and report. Each pack is one self-contained Handlebars template plus an example payload, with a PDF sample you can download and a gallery preview rendered by the real API.</p>
+
+    <h2>Why templates beat hand-rolled HTML</h2>
+
+    <p>Every developer's first invoice is a hand-written HTML page that prints acceptably once. Then someone changes the tax rate, the table breaks across pages, and the output looks like a browser print dialog. The three packs handle the details people skip:</p>
+
+    <ul>
+      <li><strong>Typography</strong>. Serif display type, hairline table rules, real page numbers — the same print stylesheet language as the Markdown theme.</li>
+      <li><strong>Page geometry</strong>. A4 with proper margins, right-aligned numerics, totals that stay attached to the last line item.</li>
+      <li><strong>Data-driven structure</strong>. Drop a field from your JSON and the section disappears — no template surgery. Only built-in <code>#if</code> and <code>#each</code>, so anything that can produce JSON can fill them.</li>
+    </ul>
+
+    <h2>Using a pack</h2>
+
+    <p>With the included CLI, one command renders any pack with your data:</p>
+
+    <pre><code>export RENDERDOCK_API_KEY=rd_your_api_key
+node templates/render.mjs invoice --data my-data.json
+# -> invoice.pdf</code></pre>
+
+    <p>Under the hood it's the same API call everything else uses — <code>template</code> plus <code>data</code> to <code>/v1/render</code> — so the identical request works from the MCP server and the n8n node too.</p>
+
+    <h2>What's in the box</h2>
+
+    <ul>
+      <li><strong>Invoice</strong> — seller and buyer blocks, line items, subtotal/tax/total, notes and payment terms on one page.</li>
+      <li><strong>Certificate</strong> — a framed A4 keepsake with signature lines, for courses, awards, and verification.</li>
+      <li><strong>Report</strong> — a KPI band, sections with tables, and footer page numbers that survive multi-page output.</li>
+    </ul>
+
+    <p>The sources live in the public repo under <code>templates/</code>, and the gallery page shows each one rendered with sample data. Take one, fill it in, and you've replaced the "someone pastes it into Word" step in your workflow. <a href="/templates/">Browse the templates</a>.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/templates/">Templates</a>
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+</body>
+</html>
