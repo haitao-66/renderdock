@@ -65,6 +65,12 @@ Ask me anything — especially roast the pricing.
 
 ## 4. X / Twitter thread
 
+> ✅ 已发布（2026-11-21，账号 @HudsonHaitao）：
+> https://x.com/HudsonHaitao/status/2124090401565069579
+> https://x.com/HudsonHaitao/status/2124095472663224622
+> https://x.com/HudsonHaitao/status/2124096033080873032
+> https://x.com/HudsonHaitao/status/2124096100227543283
+
 1/ Agents can draft. They can't deliver. RenderDock is the missing step: one API that turns Markdown, HTML, URLs, and templates into polished PDFs.
 
 2/ Built agent-native from day one:
