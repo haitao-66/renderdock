@@ -125,7 +125,7 @@ template + JSON), and whether the pricing feels right. Roast away.
 
 ## 6. V2EX（分享创造节点）
 
-> 2026-11-21 实测可访问。中文开发者社区，用户需有 V2EX 账号（新号在部分节点发帖有限制，视情况）。
+> 2026-11-21 实测可访问。注意：V2EX 注册（Google/Solana 两种方式）后还需**邀请码激活**才能用，邀请码只能由老会员生成赠送；无码则暂缓此渠道。
 
 **标题：** 分享创造：RenderDock —— 把 Markdown/模板渲染成精美 PDF 的 API（给 AI Agent 的"最后一步"）
 
