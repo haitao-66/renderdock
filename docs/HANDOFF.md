@@ -18,12 +18,12 @@ Beta 已开放（免费档 200 渲染/月）。
   - `docs/`：architecture.md、deploy.md、accounts.md、本文件
   - `marketing/`：beta-launch-drafts.md、beta-invite-email.md、n8n-demo-script.md、directory-submissions.md
   - `templates/`：发票/证书/报告模板包（Handlebars + 示例数据 + build.mjs/render.mjs）；画廊页与预览产物在 `landing/templates/`
-  - `.secrets/`：全部密钥（git 已忽略）：cloudflare-token、github-token、npm-token+npmrc、production-key（rd_1PB_…）、openrouter-key、server-credentials（root 密码 REDACTED see .secrets/server-credentials.txt）
+  - `.secrets/`：全部密钥（git 已忽略）：cloudflare-token、github-token、npm-token+npmrc、production-key、openrouter-key、server-credentials（root 密码见该文件）、n8n-demo-credentials
 - 独立仓库：`D:\Cloud code\n8n-nodes-renderdock` → github.com/haitao-66/n8n-nodes-renderdock（n8n 包，根目录布局，npm 0.1.5）
 
 ## 生产环境
 
-- 服务器：阿里云轻量（新加坡）47.236.31.106，root/REDACTED see .secrets/server-credentials.txt，SSH 密钥已配（~/.ssh/id_ed25519）
+- 服务器：阿里云轻量（新加坡）47.236.31.106，root（密码见 .secrets/server-credentials.txt），SSH 密钥已配（~/.ssh/id_ed25519）
 - API：Docker Compose（api/ 目录），宿主 80→容器 8787；Cloudflare 代理 api.renderdock.dev（SSL 模式 Flexible）
 - 网站：Cloudflare Pages（wrangler 部署，token 在 .secrets）
 - 本地 Node 工具链：`renderdock\tools\node\`（24.22.3 + npm/pnpm/npx），系统 node 是 Unity 的不可用

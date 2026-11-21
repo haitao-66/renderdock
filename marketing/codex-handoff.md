@@ -4,11 +4,11 @@
 
 ## 环境事实（不要重新安装任何东西）
 
-- n8n 已在本机运行：http://localhost:5678（owner 账号已存在：haitao0209@outlook.com / REDACTED see .secrets/n8n-demo-credentials.txt）
+- n8n 已在本机运行：http://localhost:5678（owner 账号已存在：haitao0209@outlook.com，密码见 `.secrets/n8n-demo-credentials.txt`）
 - 待演示的 npm 包：`n8n-nodes-renderdock`（**必须安装 0.1.5 版**，即 npm 最新版；此版本无需任何修补，请勿修改已安装的副本）
 - 生产渲染 API：https://api.renderdock.dev/v1/render
-- 生产 API key：REDACTED see .secrets/production-key.txt
-- AI 模型服务（用于第 7 步）：OpenRouter，key：REDACTED see .secrets/openrouter-key.txt；首选 `meta-llama/llama-3.3-70b-instruct:free`，若区域不可用换 `meta-llama/llama-3.1-8b-instruct:free`，仍不可用再换任一 `:free` 模型
+- 生产 API key：见 `.secrets/production-key.txt`
+- AI 模型服务（用于第 7 步）：OpenRouter，key 见 `.secrets/openrouter-key.txt`；首选 `meta-llama/llama-3.3-70b-instruct:free`，若区域不可用换 `meta-llama/llama-3.1-8b-instruct:free`，仍不可用再换任一 `:free` 模型
 
 ## 录制要求
 
@@ -22,10 +22,10 @@
 1. **登录**：打开 http://localhost:5678，用上方账号登录（若已登录跳过）。
 2. **安装节点**：n8n 左下角 Settings → Community Nodes → 若已安装旧版，先卸载，再安装 `n8n-nodes-renderdock`（安装 npm 最新版 0.1.5，**不要修改已安装文件**）。
 3. **新建工作流**：New workflow → 节点面板搜索 RenderDock → 拖入画布。
-4. **创建凭据并测试**：节点上 Create New Credential → 类型 RenderDock API → API URL 填 https://api.renderdock.dev/v1/render，API Key 填上面生产 key → 点 Test，展示 "Connection tested successfully"。
+4. **创建凭据并测试**：节点上 Create New Credential → 类型 RenderDock API → API URL 填 https://api.renderdock.dev/v1/render，API Key 填 `.secrets/production-key.txt` 里的生产 key → 点 Test，展示 "Connection tested successfully"。
 5. **演示动作一（Markdown → PDF）**：Resource 选 Markdown，粘贴下面"演示 Markdown"，Format 选 PDF，Execute。展示输出项中的 binary PDF 文件。
 6. **演示动作二（Template + Data → 发票 PDF）**：Resource 选 Template，粘贴"发票模板"；Additional Fields → Data (JSON) 粘贴"发票数据"。Execute，展示发票 PDF。
-7. **演示 AI Agent 工具用法**：添加 AI Agent 节点，Model 选 OpenRouter（凭据用上面的 OpenRouter key），模型 `meta-llama/llama-3.3-70b-instruct:free`。在 Agent 节点工具列表中勾选 RenderDock 节点作为工具。提示词："Write a short weekly report in Markdown about our product launch, then use the RenderDock tool to render it as a PDF and tell me the filename." 执行，展示 Agent 调用工具并生成 PDF。
+7. **演示 AI Agent 工具用法**：添加 AI Agent 节点，Model 选 OpenRouter（凭据用 `.secrets/openrouter-key.txt` 里的 key），模型 `meta-llama/llama-3.3-70b-instruct:free`。在 Agent 节点工具列表中勾选 RenderDock 节点作为工具。提示词："Write a short weekly report in Markdown about our product launch, then use the RenderDock tool to render it as a PDF and tell me the filename." 执行，展示 Agent 调用工具并生成 PDF。
 8. 结束录制。
 
 ## 演示数据
