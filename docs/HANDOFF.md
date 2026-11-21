@@ -40,7 +40,7 @@ Beta 已开放（免费档 200 渲染/月）。
 
 ## 待办清单
 
-1. 发 Beta 招募帖（marketing/beta-launch-drafts.md）——Reddit 注册需先换代理节点（2026-11-21 实测出口 IP 被 Reddit/Indie Hackers 拦 403，HN 可访问，Show HN 稿已备可先发）
+1. 发 Beta 招募帖（marketing/beta-launch-drafts.md）——Reddit 需换代理节点（出口 IP 被拦 403）；HN 新账号发 Show HN 被临时限制（2026-11-21），账号养 1-2 周再试；X 与 V2EX 可访问，稿已备
 2. 推送积压提交（本地 git push，或从服务器推）
 3. ~~发票/证书模板包（方向 B 弹药）~~ ✅ 已建（2026-11-21）：templates/ 三件套 + /templates/ 画廊页，待推送上线
 4. 更多 SEO 文章（已 6 篇：11-21 新增 URL→PDF、MCP 文档输出、模板包上线三篇；选题可继续：证书生成、网页截图 PNG、n8n 工作流案例）

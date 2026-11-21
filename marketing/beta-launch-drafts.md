@@ -80,7 +80,7 @@ Ask me anything — especially roast the pricing.
 
 ## 5. Hacker News (Show HN)
 
-> 2026-11-21 实测：Reddit / Indie Hackers 被当前出口 IP 拦截（403），HN 可访问。可先发这篇。
+> 2026-11-21 实测：Reddit / Indie Hackers 被当前出口 IP 拦截（403），HN 可访问。**同日再测：新账号发 Show HN 被临时限制**（HN 官方提示"massive influx"，要求先熟悉社区、积累历史后再发）。策略：账号正常用 1-2 周（浏览、投票、认真评论）后再试。
 
 **Title:** Show HN: RenderDock — one API that turns Markdown into polished PDFs
 
@@ -113,6 +113,41 @@ report) at renderdock.dev/templates.
 
 Feedback I'd love: which input format matters to you (Markdown vs
 template + JSON), and whether the pricing feels right. Roast away.
+```
+
+---
+
+## 6. V2EX（分享创造节点）
+
+> 2026-11-21 实测可访问。中文开发者社区，用户需有 V2EX 账号（新号在部分节点发帖有限制，视情况）。
+
+**标题：** 分享创造：RenderDock —— 把 Markdown/模板渲染成精美 PDF 的 API（给 AI Agent 的"最后一步"）
+
+**正文：**
+
+```
+做给 AI Agent 用的渲染 API：Agent 写文档很强，交付文件很弱——写完的
+Markdown 还得人肉贴进 Word 排版。RenderDock 补上这一步：一个请求，
+把 Markdown、HTML、URL 或 Handlebars 模板 + JSON 渲染成排版精致的
+A4 PDF / PNG。
+
+三种接入方式：
+- REST API：POST /v1/render，任何语言可用
+- MCP server：npx @renderdock/mcp，Agent 直接获得 render 工具，
+  返回文件路径、不占上下文
+- n8n 社区节点：n8n-nodes-renderdock，自动化工作流里直接出单据
+
+排版是产品核心：发丝线表格、页码、A4 版面，开箱即用。内置三套模板包
+（发票 / 证书 / 报告），附示例数据，复制即改。
+
+技术栈：Fastify + Playwright（headless Chromium）+ SQLite 计量，
+一台 $5 VPS，Cloudflare Pages 放官网。独立开发，三周从零到 beta。
+
+免费档 200 次/月，无需信用卡。Beta 刚开放，欢迎来拍：
+renderdock.dev （模板包：renderdock.dev/templates）
+
+想听大家的看法：定价（$19 起）合理吗？输入格式你们会优先用
+Markdown 还是模板 + JSON？
 ```
 
 ---
