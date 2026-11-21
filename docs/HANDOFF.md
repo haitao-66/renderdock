@@ -17,6 +17,7 @@ Beta 已开放（免费档 200 渲染/月）。
   - `landing/`：静态站（Cloudflare Pages），含 pricing/terms/privacy/refund/docs/blog
   - `docs/`：architecture.md、deploy.md、accounts.md、本文件
   - `marketing/`：beta-launch-drafts.md、beta-invite-email.md、n8n-demo-script.md、directory-submissions.md
+  - `templates/`：发票/证书/报告模板包（Handlebars + 示例数据 + build.mjs/render.mjs）；画廊页与预览产物在 `landing/templates/`
   - `.secrets/`：全部密钥（git 已忽略）：cloudflare-token、github-token、npm-token+npmrc、production-key（rd_1PB_…）、openrouter-key、server-credentials（root 密码 REDACTED see .secrets/server-credentials.txt）
 - 独立仓库：`D:\Cloud code\n8n-nodes-renderdock` → github.com/haitao-66/n8n-nodes-renderdock（n8n 包，根目录布局，npm 0.1.5）
 
@@ -41,7 +42,7 @@ Beta 已开放（免费档 200 渲染/月）。
 
 1. 发 Beta 招募帖（marketing/beta-launch-drafts.md）——用户 Reddit 注册后可发
 2. 推送积压提交（本地 git push，或从服务器推）
-3. 发票/证书模板包（方向 B 弹药）
+3. ~~发票/证书模板包（方向 B 弹药）~~ ✅ 已建（2026-11-21）：templates/ 三件套 + /templates/ 画廊页，待推送上线
 4. 更多 SEO 文章
 5. 等 Paddle 结算流程实际跑通（第一个付费客户后验证）
 
@@ -52,6 +53,7 @@ Beta 已开放（免费档 200 渲染/月）。
 - **GitHub 推送**：HTTPS 从代理出口被 403（换节点/格式/GCM 全无效）→ 用 SSH over 443（~/.ssh/config：Host github.com → HostName ssh.github.com, Port 443）+ 密钥认证；仓库不配 http.proxy（走 TUN）
 - **npm 发布**：走代理 env（HTTPS_PROXY=127.0.0.1:7897 + NPM_CONFIG_USERCONFIG=.secrets/npmrc）；新包先 `npm stage publish` 再网站 Approve（CLI approve 有 bug）
 - **pnpm 12**：构建白名单在 pnpm-workspace.yaml；CI 用 `--ignore-scripts` 安装
+- **模板重建**：改 templates/ 后运行 `& "D:\Cloud code\renderdock\tools\node\node.exe" templates\build.mjs` 重新生成预览（PNG/PDF + 画廊页）
 - **n8n 节点发布**：独立仓库推 tag（如 0.1.6）触发 Publish 工作流（provenance）；npm OIDC 信任发布者已指向 n8n-nodes-renderdock 仓库
 - **服务器部署**：scp 文件到 /opt/renderdock 或让用户 git push 后服务器 pull；docker compose up -d --build
 - **权限边界（重要）**：对外发布类动作（git push、npm publish、目录提交）由**用户点击运行**；代理/隧道搭建不参与（用户已自行搞定，节点地址用 47.236.31.106）

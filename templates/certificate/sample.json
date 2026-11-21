@@ -1,0 +1,10 @@
+{
+  "issuer": "RenderDock Academy",
+  "kind": "Completion",
+  "recipient": "Wei Lin",
+  "description": "for completing the RenderDock API Integration course and shipping an automated invoice pipeline built on the MCP server",
+  "signatoryOne": { "name": "Morgan Vale", "role": "Program Director" },
+  "signatoryTwo": { "name": "Alex Chen", "role": "Registrar" },
+  "date": "November 21, 2026",
+  "number": "RD-2026-0117"
+}

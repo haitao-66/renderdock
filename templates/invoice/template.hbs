@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Invoice {{number}} · {{seller.name}}</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 14mm 16mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    color: #191713;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .doc { max-width: 794px; margin: 0 auto; background: #fff; padding: 2.4rem 2.6rem; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  .invoice-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2px solid #191713; padding-bottom: 1.1rem;
+  }
+  .brand-name { font-family: Georgia, "Times New Roman", serif; font-size: 17pt; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .brand-meta { margin: .15rem 0 0; color: #5C574C; font-size: 8.5pt; }
+  .invoice-meta h1 { font-family: Georgia, "Times New Roman", serif; font-size: 22pt; font-weight: 600; margin: 0 0 .5rem; text-align: right; }
+  .meta-row { display: flex; justify-content: space-between; gap: 1.6rem; font-size: 8.5pt; }
+  .meta-row span:first-child { color: #5C574C; text-transform: uppercase; letter-spacing: .06em; font-size: 7.5pt; }
+  .parties { display: flex; gap: 3rem; margin: 1.4rem 0 0; }
+  .party { flex: 1; }
+  .party-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; color: #5C574C; margin: 0 0 .3rem; }
+  .party-name { font-weight: 600; margin: 0 0 .15rem; }
+  .party p { margin: 0 0 .1rem; }
+  .items { width: 100%; border-collapse: collapse; margin: 1.2rem 0 0; }
+  .items th { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; color: #5C574C; text-align: left; padding: .4rem .6rem .4rem 0; border-bottom: 2px solid #191713; }
+  .items th.num, .items td.num { text-align: right; }
+  .items td { padding: .5rem .6rem .5rem 0; border-bottom: 1px solid #D9D4C7; vertical-align: top; }
+  .item-note { display: block; color: #5C574C; font-size: 8.5pt; }
+  .totals { display: flex; justify-content: flex-end; margin-top: 1rem; }
+  .totals-table { width: 11.5rem; }
+  .totals-table p { display: flex; justify-content: space-between; margin: .2rem 0; font-size: 9pt; }
+  .totals-table p span:first-child { color: #5C574C; }
+  .totals-table .grand { border-top: 2px solid #191713; margin-top: .5rem; padding-top: .5rem; font-weight: 700; font-size: 11pt; }
+  .totals-table .grand span:last-child { color: #2E46A5; }
+  .due { text-align: right; color: #5C574C; font-size: 8.5pt; margin: .3rem 0 0; }
+  .notes { margin-top: 1.6rem; color: #5C574C; }
+  .notes-title { color: #191713; font-weight: 600; font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .25rem; }
+  .doc-footer { margin-top: 1.8rem; padding-top: .6rem; border-top: 1px solid #D9D4C7; color: #8A857A; font-size: 8pt; }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="invoice-head">
+    <div class="brand">
+      <p class="brand-name">{{seller.name}}</p>
+      <p class="brand-meta">{{seller.tagline}}</p>
+    </div>
+    <div class="invoice-meta">
+      <h1>Invoice</h1>
+      <div class="meta-row"><span>Number</span><span>{{number}}</span></div>
+      <div class="meta-row"><span>Issued</span><span>{{issued}}</span></div>
+      {{#if dueDate}}<div class="meta-row"><span>Due</span><span>{{dueDate}}</span></div>{{/if}}
+    </div>
+  </header>
+
+  <section class="parties">
+    <div class="party">
+      <p class="party-label">From</p>
+      <p class="party-name">{{seller.name}}</p>
+      {{#each seller.address}}<p>{{this}}</p>{{/each}}
+      <p>{{seller.email}}</p>
+    </div>
+    <div class="party">
+      <p class="party-label">Billed to</p>
+      <p class="party-name">{{buyer.name}}</p>
+      {{#each buyer.address}}<p>{{this}}</p>{{/each}}
+      {{#if buyer.email}}<p>{{buyer.email}}</p>{{/if}}
+    </div>
+  </section>
+
+  <table class="items">
+    <thead>
+      <tr>
+        <th>Description</th>
+        <th class="num">Qty</th>
+        <th class="num">Unit price</th>
+        <th class="num">Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each items}}
+      <tr>
+        <td>{{description}}{{#if note}}<span class="item-note">{{note}}</span>{{/if}}</td>
+        <td class="num">{{quantity}}</td>
+        <td class="num">{{unitPrice}}</td>
+        <td class="num">{{amount}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <section class="totals">
+    <div>
+      <div class="totals-table">
+        <p><span>Subtotal</span><span>{{subtotal}}</span></p>
+        {{#if tax}}
+        <p><span>{{taxLabel}} ({{taxRate}})</span><span>{{tax}}</span></p>
+        {{/if}}
+        <p class="grand"><span>Total due</span><span>{{total}}</span></p>
+      </div>
+      {{#if dueDate}}<p class="due">Payment due by {{dueDate}}</p>{{/if}}
+    </div>
+  </section>
+
+  {{#if notes}}
+  <section class="notes">
+    <p class="notes-title">Notes</p>
+    <p>{{notes}}</p>
+  </section>
+  {{/if}}
+
+  {{#if paymentTerms}}
+  <section class="notes">
+    <p class="notes-title">Payment</p>
+    <p>{{paymentTerms}}</p>
+  </section>
+  {{/if}}
+
+  <footer class="doc-footer">
+    <p>{{seller.name}} · {{seller.website}} · {{seller.email}}</p>
+  </footer>
+
+</div>
+</body>
+</html>

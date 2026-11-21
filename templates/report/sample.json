@@ -1,0 +1,44 @@
+{
+  "title": "RenderDock Beta — November Usage Report",
+  "kicker": "Monthly briefing",
+  "subtitle": "Prepared for beta users and stakeholders",
+  "author": "RenderDock Team",
+  "date": "November 21, 2026",
+  "kpis": [
+    { "value": "6,870", "label": "Total renders" },
+    { "value": "0.9s", "label": "Median p50" },
+    { "value": "99.7%", "label": "Success rate" },
+    { "value": "41", "label": "New API keys" }
+  ],
+  "sections": [
+    {
+      "title": "What shipped",
+      "paragraphs": [
+        "The rendering queue went live in week two and has been stable since. This month we focused on the agent-native delivery paths: the MCP server shipped to the official registry, and the n8n community node passed its first build."
+      ],
+      "bullets": [
+        "MCP server published — agents get a render tool that returns file paths",
+        "n8n node published — invoices, reports, and screenshots on a schedule",
+        "Paddle billing connected — paid tiers ready for the first paying customer"
+      ]
+    },
+    {
+      "title": "Usage by format",
+      "table": {
+        "headers": ["Format", "Renders", "Share"],
+        "rows": [
+          ["PDF", "4,210", "61%"],
+          ["PNG", "2,140", "31%"],
+          ["URL → PDF", "520", "8%"]
+        ]
+      }
+    },
+    {
+      "title": "What's next",
+      "paragraphs": [
+        "Template packs for invoices and certificates are live on renderdock.dev/templates — pull one, fill in your data, render. We are also watching the waitlist closely: the first cohort of beta users gets invited this week, and their feedback will set the roadmap for December."
+      ]
+    }
+  ],
+  "footer": "RenderDock · renderdock.dev · hello@renderdock.dev"
+}

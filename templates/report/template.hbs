@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+<style>
+  @page {
+    size: A4;
+    margin: 22mm 18mm 20mm 18mm;
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 8.5pt;
+      color: #8A857A;
+    }
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", "Microsoft YaHei", serif;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: #1C1A16;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .report { max-width: 794px; margin: 0 auto; background: #fff; padding: 2.4rem 2.6rem; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  .report-head { border-bottom: 2px solid #191713; padding-bottom: .8em; margin-bottom: 1.3em; }
+  .report-kicker {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: #2E46A5;
+    margin: 0 0 .4em;
+  }
+  h1 { font-size: 21pt; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 .3em; page-break-after: avoid; }
+  .report-meta { color: #5C574C; font-size: 9pt; margin: 0; font-family: "Segoe UI", Arial, sans-serif; }
+  h2 {
+    font-size: 14.5pt; font-weight: 600;
+    margin: 1.6em 0 .5em;
+    padding-bottom: .28em;
+    border-bottom: 1px solid #D9D4C7;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 .8em; orphans: 3; widows: 3; }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  ul, ol { margin: .5em 0 .9em; padding-left: 1.5em; }
+  li { margin: .22em 0; }
+  a { color: #2E46A5; text-decoration: none; border-bottom: 1px solid #B9C2E6; }
+  code {
+    font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+    font-size: 9pt;
+    background: #F3F1EA;
+    border: 1px solid #E6E2D6;
+    padding: .05em .32em;
+  }
+  pre { background: #F3F1EA; border: 1px solid #E3DFD3; padding: .9em 1.1em; margin: 1em 0; overflow: hidden; page-break-inside: avoid; }
+  pre code { background: none; border: none; padding: 0; font-size: 8.5pt; line-height: 1.55; }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8.5pt; font-weight: 600; text-align: left;
+    color: #5C574C;
+    border-bottom: 2px solid #1C1A16;
+    padding: .4em .7em .4em 0;
+  }
+  td { border-bottom: 1px solid #D9D4C7; padding: .45em .7em .45em 0; }
+  hr { border: none; border-top: 1px solid #D9D4C7; margin: 1.8em 0; }
+  blockquote {
+    margin: 1em 0;
+    padding: .1em 0 .1em 1.1em;
+    border-left: 3px solid #2E46A5;
+    color: #5C574C;
+    font-style: italic;
+  }
+  blockquote p { margin: .4em 0; }
+  .kpis { display: flex; border: 1px solid #D9D4C7; margin: 0 0 1.6em; page-break-inside: avoid; }
+  .kpi { flex: 1; padding: .8em 1em; border-left: 1px solid #D9D4C7; }
+  .kpi:first-child { border-left: none; }
+  .kpi-value { font-size: 17pt; margin: 0; }
+  .kpi-label {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #5C574C;
+    margin: .2em 0 0;
+  }
+  .report-footer { color: #8A857A; font-size: 8.5pt; }
+</style>
+</head>
+<body>
+<article class="report">
+
+  <header class="report-head">
+    {{#if kicker}}<p class="report-kicker">{{kicker}}</p>{{/if}}
+    <h1>{{title}}</h1>
+    <p class="report-meta">{{subtitle}}{{#if author}} · {{author}}{{/if}}{{#if date}} · {{date}}{{/if}}</p>
+  </header>
+
+  {{#if kpis}}
+  <section class="kpis">
+    {{#each kpis}}
+    <div class="kpi">
+      <p class="kpi-value">{{value}}</p>
+      <p class="kpi-label">{{label}}</p>
+    </div>
+    {{/each}}
+  </section>
+  {{/if}}
+
+  {{#each sections}}
+  <section>
+    <h2>{{title}}</h2>
+    {{#each paragraphs}}<p>{{this}}</p>{{/each}}
+    {{#if bullets}}<ul>{{#each bullets}}<li>{{this}}</li>{{/each}}</ul>{{/if}}
+    {{#if table}}
+    <table>
+      {{#if table.headers}}
+      <thead><tr>{{#each table.headers}}<th>{{this}}</th>{{/each}}</tr></thead>
+      {{/if}}
+      <tbody>
+        {{#each table.rows}}
+        <tr>{{#each this}}<td>{{this}}</td>{{/each}}</tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+  </section>
+  {{/each}}
+
+  {{#if footer}}
+  <hr>
+  <p class="report-footer">{{footer}}</p>
+  {{/if}}
+
+</article>
+</body>
+</html>

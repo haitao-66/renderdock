@@ -1,0 +1,47 @@
+{
+  "number": "INV-2026-0142",
+  "issued": "November 21, 2026",
+  "dueDate": "December 5, 2026",
+  "seller": {
+    "name": "RenderDock",
+    "tagline": "Drafts in. Documents out.",
+    "address": ["71 Ayer Rajah Crescent, #03-01", "Singapore 139951"],
+    "email": "hello@renderdock.dev",
+    "website": "renderdock.dev"
+  },
+  "buyer": {
+    "name": "Lumen Analytics Ltd",
+    "address": ["12 Madison Avenue, Suite 400", "New York, NY 10010"],
+    "email": "billing@lumenanalytics.example"
+  },
+  "items": [
+    {
+      "description": "RenderDock Starter plan — November",
+      "note": "5,000 renders included",
+      "quantity": "1",
+      "unitPrice": "$19.00",
+      "amount": "$19.00"
+    },
+    {
+      "description": "Overage renders",
+      "note": "3,500 renders @ $10 per 5,000",
+      "quantity": "1",
+      "unitPrice": "$7.00",
+      "amount": "$7.00"
+    },
+    {
+      "description": "Priority support",
+      "note": "Response within 4 business hours",
+      "quantity": "1",
+      "unitPrice": "$0.00",
+      "amount": "$0.00"
+    }
+  ],
+  "subtotal": "$26.00",
+  "taxRate": "8%",
+  "taxLabel": "Tax",
+  "tax": "$2.08",
+  "total": "$28.08",
+  "notes": "Thank you for building on RenderDock.",
+  "paymentTerms": "Bank transfer within 14 days. IBAN and SWIFT details on request — email billing@renderdock.dev."
+}

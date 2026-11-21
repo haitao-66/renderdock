@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Certificate of {{kind}} · {{recipient}}</title>
+<style>
+  @page { size: A4; margin: 14mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    color: #191713;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .frame { max-width: 794px; margin: 0 auto; background: #fff; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  @media print {
+    .frame { min-height: 264mm; }
+  }
+  .frame { border: 1.5px solid #191713; padding: 1.6rem; box-sizing: border-box; }
+  .frame-inner {
+    border: 1px solid #D9D4C7;
+    padding: 3.2rem 3.5rem 2.6rem;
+    text-align: center;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+  .issuer {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 9pt;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: #2E46A5;
+    margin: 0;
+  }
+  h1 {
+    font-size: 25pt;
+    font-weight: 600;
+    margin: .7rem 0 .3rem;
+    letter-spacing: -.01em;
+  }
+  .presented { font-size: 9pt; color: #5C574C; font-style: italic; margin: 1rem 0 0; }
+  .recipient {
+    font-size: 30pt;
+    font-weight: 600;
+    margin: .4rem 0 .9rem;
+    letter-spacing: .02em;
+  }
+  .rule { width: 5rem; border-top: 1px solid #191713; margin: 0 auto 1.2rem; }
+  .body { font-size: 11pt; line-height: 1.6; max-width: 34rem; margin: 0 auto; }
+  .signatures { display: flex; justify-content: center; gap: 4rem; margin-top: 3.2rem; }
+  .sig { width: 11rem; font-family: "Segoe UI", Arial, sans-serif; }
+  .sig-line { border-top: 1px solid #191713; margin: 0 0 .4rem; }
+  .sig-name { font-size: 9.5pt; margin: 0; }
+  .sig-role { font-size: 8pt; color: #5C574C; margin: .15rem 0 0; }
+  .cert-meta {
+    margin: 2.6rem 0 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    color: #8A857A;
+    letter-spacing: .08em;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="frame-inner">
+
+    <p class="issuer">{{issuer}}</p>
+    <h1>Certificate of {{kind}}</h1>
+    <div class="rule"></div>
+    <p class="presented">presented to</p>
+    <p class="recipient">{{recipient}}</p>
+    <p class="body">{{description}}</p>
+
+    <div class="signatures">
+      <div class="sig">
+        <div class="sig-line"></div>
+        <p class="sig-name">{{signatoryOne.name}}</p>
+        <p class="sig-role">{{signatoryOne.role}}</p>
+      </div>
+      <div class="sig">
+        <div class="sig-line"></div>
+        <p class="sig-name">{{signatoryTwo.name}}</p>
+        <p class="sig-role">{{signatoryTwo.role}}</p>
+      </div>
+    </div>
+
+    <p class="cert-meta">Issued {{date}} · Certificate № {{number}}</p>
+
+  </div>
+</div>
+</body>
+</html>

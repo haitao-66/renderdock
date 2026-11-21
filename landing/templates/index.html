@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Templates — RenderDock</title>
+<meta name="description" content="Ready-made RenderDock templates: invoice, certificate, and report. Handlebars template plus JSON data in, designed A4 PDF or PNG out.">
+<link rel="canonical" href="https://renderdock.dev/templates/">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="wordmark" href="/">RenderDock</a>
+  <nav class="site-nav" aria-label="Main">
+    <a href="/#demo">Demo</a>
+    <a href="/templates/">Templates</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="/docs/">Docs</a>
+    <a class="button button-small" href="/#waitlist">Get early access</a>
+  </nav>
+</header>
+
+<main>
+  <section class="page-hero">
+    <h1>Templates</h1>
+    <p class="hero-sub">Production documents, ready to fill in. Send a Handlebars template plus your JSON data and get a designed A4 PDF or PNG back — free with your API key.</p>
+  </section>
+
+  <section class="tpl-gallery" aria-label="Template packs">
+
+    <article class="tpl-card">
+      <h2>Invoice</h2>
+      <p>Billing, receipts, quotes. Line items, totals, and payment terms on one page.</p>
+      <figure class="tpl-figure">
+        <img src="/templates/previews/invoice.png" alt="Invoice template rendered with sample data">
+      </figure>
+      <p class="tpl-actions"><a class="button button-small" href="/templates/previews/invoice.pdf" download>PDF sample</a></p>
+      <details>
+        <summary>Template source</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-invoice-tpl">Copy</button>
+          <pre id="src-invoice-tpl">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Invoice {{number}} · {{seller.name}}&lt;/title&gt;
+&lt;style&gt;
+  @page { size: A4; margin: 16mm 16mm 14mm 16mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    color: #191713;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .doc { max-width: 794px; margin: 0 auto; background: #fff; padding: 2.4rem 2.6rem; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  .invoice-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    border-bottom: 2px solid #191713; padding-bottom: 1.1rem;
+  }
+  .brand-name { font-family: Georgia, "Times New Roman", serif; font-size: 17pt; font-weight: 600; margin: 0; letter-spacing: -.01em; }
+  .brand-meta { margin: .15rem 0 0; color: #5C574C; font-size: 8.5pt; }
+  .invoice-meta h1 { font-family: Georgia, "Times New Roman", serif; font-size: 22pt; font-weight: 600; margin: 0 0 .5rem; text-align: right; }
+  .meta-row { display: flex; justify-content: space-between; gap: 1.6rem; font-size: 8.5pt; }
+  .meta-row span:first-child { color: #5C574C; text-transform: uppercase; letter-spacing: .06em; font-size: 7.5pt; }
+  .parties { display: flex; gap: 3rem; margin: 1.4rem 0 0; }
+  .party { flex: 1; }
+  .party-label { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; color: #5C574C; margin: 0 0 .3rem; }
+  .party-name { font-weight: 600; margin: 0 0 .15rem; }
+  .party p { margin: 0 0 .1rem; }
+  .items { width: 100%; border-collapse: collapse; margin: 1.2rem 0 0; }
+  .items th { font-size: 7.5pt; text-transform: uppercase; letter-spacing: .08em; color: #5C574C; text-align: left; padding: .4rem .6rem .4rem 0; border-bottom: 2px solid #191713; }
+  .items th.num, .items td.num { text-align: right; }
+  .items td { padding: .5rem .6rem .5rem 0; border-bottom: 1px solid #D9D4C7; vertical-align: top; }
+  .item-note { display: block; color: #5C574C; font-size: 8.5pt; }
+  .totals { display: flex; justify-content: flex-end; margin-top: 1rem; }
+  .totals-table { width: 11.5rem; }
+  .totals-table p { display: flex; justify-content: space-between; margin: .2rem 0; font-size: 9pt; }
+  .totals-table p span:first-child { color: #5C574C; }
+  .totals-table .grand { border-top: 2px solid #191713; margin-top: .5rem; padding-top: .5rem; font-weight: 700; font-size: 11pt; }
+  .totals-table .grand span:last-child { color: #2E46A5; }
+  .due { text-align: right; color: #5C574C; font-size: 8.5pt; margin: .3rem 0 0; }
+  .notes { margin-top: 1.6rem; color: #5C574C; }
+  .notes-title { color: #191713; font-weight: 600; font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; margin: 0 0 .25rem; }
+  .doc-footer { margin-top: 1.8rem; padding-top: .6rem; border-top: 1px solid #D9D4C7; color: #8A857A; font-size: 8pt; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="doc"&gt;
+
+  &lt;header class="invoice-head"&gt;
+    &lt;div class="brand"&gt;
+      &lt;p class="brand-name"&gt;{{seller.name}}&lt;/p&gt;
+      &lt;p class="brand-meta"&gt;{{seller.tagline}}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="invoice-meta"&gt;
+      &lt;h1&gt;Invoice&lt;/h1&gt;
+      &lt;div class="meta-row"&gt;&lt;span&gt;Number&lt;/span&gt;&lt;span&gt;{{number}}&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="meta-row"&gt;&lt;span&gt;Issued&lt;/span&gt;&lt;span&gt;{{issued}}&lt;/span&gt;&lt;/div&gt;
+      {{#if dueDate}}&lt;div class="meta-row"&gt;&lt;span&gt;Due&lt;/span&gt;&lt;span&gt;{{dueDate}}&lt;/span&gt;&lt;/div&gt;{{/if}}
+    &lt;/div&gt;
+  &lt;/header&gt;
+
+  &lt;section class="parties"&gt;
+    &lt;div class="party"&gt;
+      &lt;p class="party-label"&gt;From&lt;/p&gt;
+      &lt;p class="party-name"&gt;{{seller.name}}&lt;/p&gt;
+      {{#each seller.address}}&lt;p&gt;{{this}}&lt;/p&gt;{{/each}}
+      &lt;p&gt;{{seller.email}}&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="party"&gt;
+      &lt;p class="party-label"&gt;Billed to&lt;/p&gt;
+      &lt;p class="party-name"&gt;{{buyer.name}}&lt;/p&gt;
+      {{#each buyer.address}}&lt;p&gt;{{this}}&lt;/p&gt;{{/each}}
+      {{#if buyer.email}}&lt;p&gt;{{buyer.email}}&lt;/p&gt;{{/if}}
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;table class="items"&gt;
+    &lt;thead&gt;
+      &lt;tr&gt;
+        &lt;th&gt;Description&lt;/th&gt;
+        &lt;th class="num"&gt;Qty&lt;/th&gt;
+        &lt;th class="num"&gt;Unit price&lt;/th&gt;
+        &lt;th class="num"&gt;Amount&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+      {{#each items}}
+      &lt;tr&gt;
+        &lt;td&gt;{{description}}{{#if note}}&lt;span class="item-note"&gt;{{note}}&lt;/span&gt;{{/if}}&lt;/td&gt;
+        &lt;td class="num"&gt;{{quantity}}&lt;/td&gt;
+        &lt;td class="num"&gt;{{unitPrice}}&lt;/td&gt;
+        &lt;td class="num"&gt;{{amount}}&lt;/td&gt;
+      &lt;/tr&gt;
+      {{/each}}
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;section class="totals"&gt;
+    &lt;div&gt;
+      &lt;div class="totals-table"&gt;
+        &lt;p&gt;&lt;span&gt;Subtotal&lt;/span&gt;&lt;span&gt;{{subtotal}}&lt;/span&gt;&lt;/p&gt;
+        {{#if tax}}
+        &lt;p&gt;&lt;span&gt;{{taxLabel}} ({{taxRate}})&lt;/span&gt;&lt;span&gt;{{tax}}&lt;/span&gt;&lt;/p&gt;
+        {{/if}}
+        &lt;p class="grand"&gt;&lt;span&gt;Total due&lt;/span&gt;&lt;span&gt;{{total}}&lt;/span&gt;&lt;/p&gt;
+      &lt;/div&gt;
+      {{#if dueDate}}&lt;p class="due"&gt;Payment due by {{dueDate}}&lt;/p&gt;{{/if}}
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  {{#if notes}}
+  &lt;section class="notes"&gt;
+    &lt;p class="notes-title"&gt;Notes&lt;/p&gt;
+    &lt;p&gt;{{notes}}&lt;/p&gt;
+  &lt;/section&gt;
+  {{/if}}
+
+  {{#if paymentTerms}}
+  &lt;section class="notes"&gt;
+    &lt;p class="notes-title"&gt;Payment&lt;/p&gt;
+    &lt;p&gt;{{paymentTerms}}&lt;/p&gt;
+  &lt;/section&gt;
+  {{/if}}
+
+  &lt;footer class="doc-footer"&gt;
+    &lt;p&gt;{{seller.name}} · {{seller.website}} · {{seller.email}}&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Sample data</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-invoice-data">Copy</button>
+          <pre id="src-invoice-data">{
+  "number": "INV-2026-0142",
+  "issued": "November 21, 2026",
+  "dueDate": "December 5, 2026",
+  "seller": {
+    "name": "RenderDock",
+    "tagline": "Drafts in. Documents out.",
+    "address": ["71 Ayer Rajah Crescent, #03-01", "Singapore 139951"],
+    "email": "hello@renderdock.dev",
+    "website": "renderdock.dev"
+  },
+  "buyer": {
+    "name": "Lumen Analytics Ltd",
+    "address": ["12 Madison Avenue, Suite 400", "New York, NY 10010"],
+    "email": "billing@lumenanalytics.example"
+  },
+  "items": [
+    {
+      "description": "RenderDock Starter plan — November",
+      "note": "5,000 renders included",
+      "quantity": "1",
+      "unitPrice": "$19.00",
+      "amount": "$19.00"
+    },
+    {
+      "description": "Overage renders",
+      "note": "3,500 renders @ $10 per 5,000",
+      "quantity": "1",
+      "unitPrice": "$7.00",
+      "amount": "$7.00"
+    },
+    {
+      "description": "Priority support",
+      "note": "Response within 4 business hours",
+      "quantity": "1",
+      "unitPrice": "$0.00",
+      "amount": "$0.00"
+    }
+  ],
+  "subtotal": "$26.00",
+  "taxRate": "8%",
+  "taxLabel": "Tax",
+  "tax": "$2.08",
+  "total": "$28.08",
+  "notes": "Thank you for building on RenderDock.",
+  "paymentTerms": "Bank transfer within 14 days. IBAN and SWIFT details on request — email billing@renderdock.dev."
+}
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Use it</summary>
+        <pre>node templates/render.mjs invoice --data my-data.json</pre>
+      </details>
+    </article>
+
+    <article class="tpl-card">
+      <h2>Certificate</h2>
+      <p>Courses, awards, verification. A framed A4 keepsake with signature lines.</p>
+      <figure class="tpl-figure">
+        <img src="/templates/previews/certificate.png" alt="Certificate template rendered with sample data">
+      </figure>
+      <p class="tpl-actions"><a class="button button-small" href="/templates/previews/certificate.pdf" download>PDF sample</a></p>
+      <details>
+        <summary>Template source</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-certificate-tpl">Copy</button>
+          <pre id="src-certificate-tpl">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Certificate of {{kind}} · {{recipient}}&lt;/title&gt;
+&lt;style&gt;
+  @page { size: A4; margin: 14mm; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    color: #191713;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .frame { max-width: 794px; margin: 0 auto; background: #fff; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  @media print {
+    .frame { min-height: 264mm; }
+  }
+  .frame { border: 1.5px solid #191713; padding: 1.6rem; box-sizing: border-box; }
+  .frame-inner {
+    border: 1px solid #D9D4C7;
+    padding: 3.2rem 3.5rem 2.6rem;
+    text-align: center;
+    box-sizing: border-box;
+    min-height: 100%;
+  }
+  .issuer {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 9pt;
+    letter-spacing: .35em;
+    text-transform: uppercase;
+    color: #2E46A5;
+    margin: 0;
+  }
+  h1 {
+    font-size: 25pt;
+    font-weight: 600;
+    margin: .7rem 0 .3rem;
+    letter-spacing: -.01em;
+  }
+  .presented { font-size: 9pt; color: #5C574C; font-style: italic; margin: 1rem 0 0; }
+  .recipient {
+    font-size: 30pt;
+    font-weight: 600;
+    margin: .4rem 0 .9rem;
+    letter-spacing: .02em;
+  }
+  .rule { width: 5rem; border-top: 1px solid #191713; margin: 0 auto 1.2rem; }
+  .body { font-size: 11pt; line-height: 1.6; max-width: 34rem; margin: 0 auto; }
+  .signatures { display: flex; justify-content: center; gap: 4rem; margin-top: 3.2rem; }
+  .sig { width: 11rem; font-family: "Segoe UI", Arial, sans-serif; }
+  .sig-line { border-top: 1px solid #191713; margin: 0 0 .4rem; }
+  .sig-name { font-size: 9.5pt; margin: 0; }
+  .sig-role { font-size: 8pt; color: #5C574C; margin: .15rem 0 0; }
+  .cert-meta {
+    margin: 2.6rem 0 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    color: #8A857A;
+    letter-spacing: .08em;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="frame"&gt;
+  &lt;div class="frame-inner"&gt;
+
+    &lt;p class="issuer"&gt;{{issuer}}&lt;/p&gt;
+    &lt;h1&gt;Certificate of {{kind}}&lt;/h1&gt;
+    &lt;div class="rule"&gt;&lt;/div&gt;
+    &lt;p class="presented"&gt;presented to&lt;/p&gt;
+    &lt;p class="recipient"&gt;{{recipient}}&lt;/p&gt;
+    &lt;p class="body"&gt;{{description}}&lt;/p&gt;
+
+    &lt;div class="signatures"&gt;
+      &lt;div class="sig"&gt;
+        &lt;div class="sig-line"&gt;&lt;/div&gt;
+        &lt;p class="sig-name"&gt;{{signatoryOne.name}}&lt;/p&gt;
+        &lt;p class="sig-role"&gt;{{signatoryOne.role}}&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class="sig"&gt;
+        &lt;div class="sig-line"&gt;&lt;/div&gt;
+        &lt;p class="sig-name"&gt;{{signatoryTwo.name}}&lt;/p&gt;
+        &lt;p class="sig-role"&gt;{{signatoryTwo.role}}&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="cert-meta"&gt;Issued {{date}} · Certificate № {{number}}&lt;/p&gt;
+
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Sample data</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-certificate-data">Copy</button>
+          <pre id="src-certificate-data">{
+  "issuer": "RenderDock Academy",
+  "kind": "Completion",
+  "recipient": "Wei Lin",
+  "description": "for completing the RenderDock API Integration course and shipping an automated invoice pipeline built on the MCP server",
+  "signatoryOne": { "name": "Morgan Vale", "role": "Program Director" },
+  "signatoryTwo": { "name": "Alex Chen", "role": "Registrar" },
+  "date": "November 21, 2026",
+  "number": "RD-2026-0117"
+}
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Use it</summary>
+        <pre>node templates/render.mjs certificate --data my-data.json</pre>
+      </details>
+    </article>
+
+    <article class="tpl-card">
+      <h2>Report</h2>
+      <p>Monthly briefings, usage reports, summaries. KPI band, sections, tables, page numbers.</p>
+      <figure class="tpl-figure">
+        <img src="/templates/previews/report.png" alt="Report template rendered with sample data">
+      </figure>
+      <p class="tpl-actions"><a class="button button-small" href="/templates/previews/report.pdf" download>PDF sample</a></p>
+      <details>
+        <summary>Template source</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-report-tpl">Copy</button>
+          <pre id="src-report-tpl">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;{{title}}&lt;/title&gt;
+&lt;style&gt;
+  @page {
+    size: A4;
+    margin: 22mm 18mm 20mm 18mm;
+    @bottom-center {
+      content: counter(page) " / " counter(pages);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 8.5pt;
+      color: #8A857A;
+    }
+  }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Times New Roman", "Songti SC", "SimSun", "Microsoft YaHei", serif;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: #1C1A16;
+  }
+  @media screen {
+    body { background: #EFECE3; padding: 2.5rem 0; }
+    .report { max-width: 794px; margin: 0 auto; background: #fff; padding: 2.4rem 2.6rem; box-shadow: 0 1px 3px rgba(25, 23, 19, .12); }
+  }
+  .report-head { border-bottom: 2px solid #191713; padding-bottom: .8em; margin-bottom: 1.3em; }
+  .report-kicker {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    color: #2E46A5;
+    margin: 0 0 .4em;
+  }
+  h1 { font-size: 21pt; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 .3em; page-break-after: avoid; }
+  .report-meta { color: #5C574C; font-size: 9pt; margin: 0; font-family: "Segoe UI", Arial, sans-serif; }
+  h2 {
+    font-size: 14.5pt; font-weight: 600;
+    margin: 1.6em 0 .5em;
+    padding-bottom: .28em;
+    border-bottom: 1px solid #D9D4C7;
+    page-break-after: avoid;
+  }
+  p { margin: 0 0 .8em; orphans: 3; widows: 3; }
+  strong { font-weight: 700; }
+  em { font-style: italic; }
+  ul, ol { margin: .5em 0 .9em; padding-left: 1.5em; }
+  li { margin: .22em 0; }
+  a { color: #2E46A5; text-decoration: none; border-bottom: 1px solid #B9C2E6; }
+  code {
+    font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+    font-size: 9pt;
+    background: #F3F1EA;
+    border: 1px solid #E6E2D6;
+    padding: .05em .32em;
+  }
+  pre { background: #F3F1EA; border: 1px solid #E3DFD3; padding: .9em 1.1em; margin: 1em 0; overflow: hidden; page-break-inside: avoid; }
+  pre code { background: none; border: none; padding: 0; font-size: 8.5pt; line-height: 1.55; }
+  table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 9.5pt; page-break-inside: avoid; }
+  th {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 8.5pt; font-weight: 600; text-align: left;
+    color: #5C574C;
+    border-bottom: 2px solid #1C1A16;
+    padding: .4em .7em .4em 0;
+  }
+  td { border-bottom: 1px solid #D9D4C7; padding: .45em .7em .45em 0; }
+  hr { border: none; border-top: 1px solid #D9D4C7; margin: 1.8em 0; }
+  blockquote {
+    margin: 1em 0;
+    padding: .1em 0 .1em 1.1em;
+    border-left: 3px solid #2E46A5;
+    color: #5C574C;
+    font-style: italic;
+  }
+  blockquote p { margin: .4em 0; }
+  .kpis { display: flex; border: 1px solid #D9D4C7; margin: 0 0 1.6em; page-break-inside: avoid; }
+  .kpi { flex: 1; padding: .8em 1em; border-left: 1px solid #D9D4C7; }
+  .kpi:first-child { border-left: none; }
+  .kpi-value { font-size: 17pt; margin: 0; }
+  .kpi-label {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #5C574C;
+    margin: .2em 0 0;
+  }
+  .report-footer { color: #8A857A; font-size: 8.5pt; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;article class="report"&gt;
+
+  &lt;header class="report-head"&gt;
+    {{#if kicker}}&lt;p class="report-kicker"&gt;{{kicker}}&lt;/p&gt;{{/if}}
+    &lt;h1&gt;{{title}}&lt;/h1&gt;
+    &lt;p class="report-meta"&gt;{{subtitle}}{{#if author}} · {{author}}{{/if}}{{#if date}} · {{date}}{{/if}}&lt;/p&gt;
+  &lt;/header&gt;
+
+  {{#if kpis}}
+  &lt;section class="kpis"&gt;
+    {{#each kpis}}
+    &lt;div class="kpi"&gt;
+      &lt;p class="kpi-value"&gt;{{value}}&lt;/p&gt;
+      &lt;p class="kpi-label"&gt;{{label}}&lt;/p&gt;
+    &lt;/div&gt;
+    {{/each}}
+  &lt;/section&gt;
+  {{/if}}
+
+  {{#each sections}}
+  &lt;section&gt;
+    &lt;h2&gt;{{title}}&lt;/h2&gt;
+    {{#each paragraphs}}&lt;p&gt;{{this}}&lt;/p&gt;{{/each}}
+    {{#if bullets}}&lt;ul&gt;{{#each bullets}}&lt;li&gt;{{this}}&lt;/li&gt;{{/each}}&lt;/ul&gt;{{/if}}
+    {{#if table}}
+    &lt;table&gt;
+      {{#if table.headers}}
+      &lt;thead&gt;&lt;tr&gt;{{#each table.headers}}&lt;th&gt;{{this}}&lt;/th&gt;{{/each}}&lt;/tr&gt;&lt;/thead&gt;
+      {{/if}}
+      &lt;tbody&gt;
+        {{#each table.rows}}
+        &lt;tr&gt;{{#each this}}&lt;td&gt;{{this}}&lt;/td&gt;{{/each}}&lt;/tr&gt;
+        {{/each}}
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+    {{/if}}
+  &lt;/section&gt;
+  {{/each}}
+
+  {{#if footer}}
+  &lt;hr&gt;
+  &lt;p class="report-footer"&gt;{{footer}}&lt;/p&gt;
+  {{/if}}
+
+&lt;/article&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Sample data</summary>
+        <div class="tpl-source">
+          <button class="copy-button" type="button" data-copy="src-report-data">Copy</button>
+          <pre id="src-report-data">{
+  "title": "RenderDock Beta — November Usage Report",
+  "kicker": "Monthly briefing",
+  "subtitle": "Prepared for beta users and stakeholders",
+  "author": "RenderDock Team",
+  "date": "November 21, 2026",
+  "kpis": [
+    { "value": "6,870", "label": "Total renders" },
+    { "value": "0.9s", "label": "Median p50" },
+    { "value": "99.7%", "label": "Success rate" },
+    { "value": "41", "label": "New API keys" }
+  ],
+  "sections": [
+    {
+      "title": "What shipped",
+      "paragraphs": [
+        "The rendering queue went live in week two and has been stable since. This month we focused on the agent-native delivery paths: the MCP server shipped to the official registry, and the n8n community node passed its first build."
+      ],
+      "bullets": [
+        "MCP server published — agents get a render tool that returns file paths",
+        "n8n node published — invoices, reports, and screenshots on a schedule",
+        "Paddle billing connected — paid tiers ready for the first paying customer"
+      ]
+    },
+    {
+      "title": "Usage by format",
+      "table": {
+        "headers": ["Format", "Renders", "Share"],
+        "rows": [
+          ["PDF", "4,210", "61%"],
+          ["PNG", "2,140", "31%"],
+          ["URL → PDF", "520", "8%"]
+        ]
+      }
+    },
+    {
+      "title": "What's next",
+      "paragraphs": [
+        "Template packs for invoices and certificates are live on renderdock.dev/templates — pull one, fill in your data, render. We are also watching the waitlist closely: the first cohort of beta users gets invited this week, and their feedback will set the roadmap for December."
+      ]
+    }
+  ],
+  "footer": "RenderDock · renderdock.dev · hello@renderdock.dev"
+}
+</pre>
+        </div>
+      </details>
+      <details>
+        <summary>Use it</summary>
+        <pre>node templates/render.mjs report --data my-data.json</pre>
+      </details>
+    </article>
+
+  </section>
+
+  <section class="tpl-steps">
+    <h2>How it works</h2>
+    <div class="ways-list">
+      <div class="way-row">
+        <h3 class="way-name">1 · Copy a template</h3>
+        <div class="way-detail">
+          <p>Each pack above is one self-contained Handlebars file. Grab the source, or the sample data, or both.</p>
+        </div>
+      </div>
+      <div class="way-row">
+        <h3 class="way-name">2 · Fill in your data</h3>
+        <div class="way-detail">
+          <p>Swap the sample JSON for yours. Templates use only built-in <code>#if</code> / <code>#each</code> — drop any section by omitting its field, and precompute formatted values like currency strings.</p>
+        </div>
+      </div>
+      <div class="way-row">
+        <h3 class="way-name">3 · Render</h3>
+        <div class="way-detail">
+          <p>One API call, or the MCP server, or the n8n node — the same <code>template</code> + <code>data</code> pair works in all three:</p>
+          <pre>node templates/render.mjs invoice --data my-data.json
+# requires RENDERDOCK_API_KEY — see the docs</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="waitlist" id="waitlist">
+    <h2>Get your API key</h2>
+    <p class="waitlist-note">The beta is open — 200 renders a month, free. Grab a key and start with the sample data above.</p>
+    <form id="waitlist-form" class="waitlist-form" novalidate>
+      <label class="visually-hidden" for="email">Email address</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+      <button class="button" type="submit">Get early access</button>
+    </form>
+    <p id="waitlist-error" class="waitlist-error" role="alert" hidden>The signup didn't reach the server. Try again in a moment.</p>
+    <p id="waitlist-done" class="waitlist-done" hidden>You're on the list. We'll email when the beta opens.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>Set in Georgia and Segoe UI. Rendered by RenderDock.</p>
+  <p>© 2026 RenderDock — hello@renderdock.dev</p>
+  <nav class="footer-links" aria-label="Legal">
+    <a href="/templates/">Templates</a>
+    <a href="/blog/">Blog</a>
+    <a href="/terms/">Terms</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/refund/">Refund</a>
+  </nav>
+</footer>
+
+<script src="../app.js"></script>
+<script>
+  document.querySelectorAll(".copy-button").forEach(function (btn) {
+    btn.addEventListener("click", async function () {
+      var pre = document.getElementById(btn.dataset.copy);
+      try {
+        await navigator.clipboard.writeText(pre.textContent);
+      } catch (err) {
+        var range = document.createRange();
+        range.selectNodeContents(pre);
+        var sel = getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        document.execCommand("copy");
+        sel.removeAllRanges();
+      }
+      btn.textContent = "Copied";
+      setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+    });
+  });
+</script>
+</body>
+</html>
