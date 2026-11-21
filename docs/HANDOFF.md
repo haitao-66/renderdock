@@ -54,6 +54,7 @@ Beta 已开放（免费档 200 渲染/月）。
 - **npm 发布**：走代理 env（HTTPS_PROXY=127.0.0.1:7897 + NPM_CONFIG_USERCONFIG=.secrets/npmrc）；新包先 `npm stage publish` 再网站 Approve（CLI approve 有 bug）
 - **pnpm 12**：构建白名单在 pnpm-workspace.yaml；CI 用 `--ignore-scripts` 安装
 - **模板重建**：改 templates/ 后运行 `& "D:\Cloud code\renderdock\tools\node\node.exe" templates\build.mjs` 重新生成预览（PNG/PDF + 画廊页）
+- **公开仓库密钥（2026-11-21 踩坑）**：GitHub push protection 会拦截历史提交里的密钥（codex-handoff.md 曾含 OpenRouter key）。修复流程 = 当前文件脱敏指向 `.secrets/` → `git filter-branch --tree-filter` 重写全部未推送提交 → `git push --force-with-lease`；tree-filter 脚本路径**不能含空格**（"Cloud code" 会被拆，复制到无空格路径如 `D:\scrub-secrets.sh` 再跑）。密钥一律只放 `.secrets/`
 - **n8n 节点发布**：独立仓库推 tag（如 0.1.6）触发 Publish 工作流（provenance）；npm OIDC 信任发布者已指向 n8n-nodes-renderdock 仓库
 - **服务器部署**：scp 文件到 /opt/renderdock 或让用户 git push 后服务器 pull；docker compose up -d --build
 - **权限边界（重要）**：对外发布类动作（git push、npm publish、目录提交）由**用户点击运行**；代理/隧道搭建不参与（用户已自行搞定，节点地址用 47.236.31.106）
